@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Đăng Tin</title>
+</head>
+<body>
+<style>
+    body {
+        background-color: #ccc;
+    }
+</style>
+<section id="upload">
+    <h1>Đăng Tin</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <label>Đăng hình ảnh</label><br>
+        <input type="file" name="" placeholder="Hình ảnh" class="form-control"><br>
+        <label>Danh mục</label><br>
+        <?php
+        $sql_type = mysqli_query($con, "select * from tbl_type order by type_id");
+        ?>
+        <select name="type" class="form-control">
+            <option value="0">---Chọn---</option>
+            <?php
+            while($row_type = mysqli_fetch_array($sql_type)) {
+            ?>
+            <option value="<?php echo $row_type['type_id'] ?>"><?php echo $row_type['type_name'] ?></option>
+            <?php
+            }
+            ?>
+        </select>
+        <br>
+        <label>Tiêu đề tin đăng</label><br>
+        <input type="text" name="" placeholder="Tiêu đề" class="form-control"><br>
+        <label>Địa chỉ tin đăng</label><br>
+        <input type="text" name="" placeholder="Địa chỉ" class="form-control"><br>
+        <label>Giá bán</label><br>
+        <input type="text" name="" placeholder="VND" class="form-control"><br>
+        <label>Diện tích</label><br>
+        <input type="text" name="" placeholder="" class="form-control"><br>
+        <label>Chiều ngang</label><br>
+        <input type="text" name="" placeholder="" class="form-control"><br>
+        <label>Chiều dài</label><br>
+        <input type="text" name="" placeholder="" class="form-control"><br>
+        <label>Mô tả</label><br>
+        <textarea name="more" class="form-control"></textarea><br>
+</section>
+</body>
+</html>
