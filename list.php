@@ -20,7 +20,7 @@ include_once('db/connect.php');
             <div class="body-left-top">
                 <div class="quick-filter-wrapper">
                     <div class="quick-filter-content">
-                        <a href="#" class="quick-filter-link">
+                        <a href="?category=2" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="house.jpg" class="quick-filter-item-icon">
                                 <span>Nhà ở</span>
@@ -30,7 +30,7 @@ include_once('db/connect.php');
                 </div>
                 <div class="quick-filter-wrapper">
                     <div class="quick-filter-content">
-                        <a href="#" class="quick-filter-link">
+                        <a href="?category=1" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="land.jpg" class="quick-filter-item-icon">
                                 <span>Đất</span>
@@ -40,7 +40,7 @@ include_once('db/connect.php');
                 </div>
                 <div class="quick-filter-wrapper">
                     <div class="quick-filter-content">
-                        <a href="#" class="quick-filter-link">
+                        <a href="?category=3" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="realestate.jpg" class="quick-filter-item-icon">
                                 <span>Căn hộ/Chung cư</span>
@@ -50,7 +50,7 @@ include_once('db/connect.php');
                 </div>
                 <div class="quick-filter-wrapper">
                     <div class="quick-filter-content">
-                        <a href="#" class="quick-filter-link">
+                        <a href="?category=4" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="businesspremises.jpg" class="quick-filter-item-icon">
                                 <span>Văn phòng kinh doanh</span>
@@ -66,8 +66,9 @@ include_once('db/connect.php');
                     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    
-                    $sql_info = mysqli_query($con, "select * from tbl_information order by informaion_code asc limit ". $item_per_page ." offset " .$offset);
+                    $category = isset($_GET['category']) ? $_GET['category'] : 1;
+                    $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ".$category."
+                    order by information_code asc limit ". $item_per_page ." offset " .$offset);
                     while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
