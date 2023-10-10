@@ -13,7 +13,6 @@ include_once('db/connect.php');
     <title>Trang Chủ</title>
 </head>
 <body>
-    
 <section id="filter" class='list-container'>
     <div class="body-wrapper">
         <div class="body-left">
@@ -58,7 +57,6 @@ include_once('db/connect.php');
                         </a>
                     </div>
                 </div>
-
             </div>
             <div class="save-wrapper">
                 <div>
@@ -67,13 +65,13 @@ include_once('db/connect.php');
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $item_per_page;
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
-                    $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ".$category."
-                    order by information_code asc limit ". $item_per_page ." offset " .$offset);
+                    $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
+                        order by information_code asc limit ". $item_per_page ." offset ". $offset);
                     while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
                             <div class="save-left">
-                                <img src= "<?php echo $row_info['picture'] ?>" width="100px" height="100px">
+                                <a href="post.php?id=1"><img src="<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
                             </div>
                             <div class="save-right">
                                 <div class="save-right-top">
@@ -82,15 +80,14 @@ include_once('db/connect.php');
                                     <p><?php echo $row_info['price']?> tỷ</p>
                                 </div>
                                 <div class="save-right-bottom">
-                                    <p>Tên Người Đăng</p>
-                                    <i class='bx bxs-heart'></i>
+                                    <p></p>
+                                    <i class='bx bx-heart'></i>
                                 </div>
                             </div>
                         </div>
                         <?php 
                         }
                         ?>
-                    
                 </div>
             </div>
             <div class='paging-container'>

@@ -1,37 +1,58 @@
+<?php
+include_once('db/connect.php');
+session_start();
+?>
+<?php
+if(isset($_POST['login'])) {
+    $number = $_POST['number'];
+    $pass = $_POST['pass'];
+    if($number == '' || $pass == '') {
+        echo '<p>Nhập đầy đủ!<p>';
+    } else {
+        $sql_login = mysqli_query($con, "select * from tbl_account where phone_number = '$number' and password = '$pass' limit 1");
+        $count = mysqli_num_rows($sql_login);
+        $row_login = mysqli_fetch_array($sql_login);
+        if($count > 0) {
+            $_SESSION['login'] = $row_login['name'];
+            $_SESSION['id'] = $row_login['phone_number'];
+            header('Location: index.php');
+        } else {
+            echo '<p>Lỗi!<p>';
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Đăng Ký</title>
+    <title>Đăng Nhập</title>
 </head>
 <body>
     <div class='login-layout'>
         <div class='wrapper'>
             <div class='form-login-wrapper'>
-                <h2 class='login-title'>ĐĂNG KÝ</h2>
+                <h2 class='login-title'>ĐĂNG NHẬP</h2>
                 <div class='login-inf-wrapper'>
                     <form action="" method="POST">
                         <div class='inner'>
-                            <input class='input-login' placeholder='Họ và tên'></input>
+                            <input type="text" name="number" class='input-login' placeholder='Số điện thoại'></input>
                         </div>
                         <div class='inner'>
-                            <input class='input-login' placeholder='Số điện thoại'></input>
-                        </div>
-                        <div class='inner'>
-                            <input class='input-login' placeholder='Mật khẩu' type="password"></input>
+                            <input type="password" name="pass" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
                         <a class='forgot-password'>Quên mật khẩu?</a>
+                        <input type="submit" name="login" class='btn-login' value="ĐĂNG NHẬP">
                     </form>
                 </div>
-                <button class='btn-login'>ĐĂNG KÝ</button>
                 <div class='social-media-options'>
                     <span class='divider'></span>
-                    <span class='divider-text'>Hoặc đăng ký bằng</span>
+                    <span class='divider-text'>Hoặc đăng nhập bằng</span>
                     <span class='divider'></span>
                 </div>
                 <div class='login-method'>

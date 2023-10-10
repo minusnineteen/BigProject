@@ -1,3 +1,14 @@
+<?php
+include_once('db/connect.php');
+?>
+<?php
+if(isset($_POST['register'])) {
+    $number = $_POST['number'];
+    $pass = $_POST['pass'];
+    $name = $_POST['name'];
+    $sql_register = mysqli_query($con, "insert into tbl_account(phone_number, password, name) values('$number', '$pass', '$name')");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +28,18 @@
                 <div class='login-inf-wrapper'>
                     <form action="" method="POST">
                         <div class='inner'>
-                            <input class='input-login' placeholder='Họ và tên'></input>
+                            <input type="text" name="name" class='input-login' placeholder='Họ và tên'></input>
                         </div>
                         <div class='inner'>
-                            <input class='input-login' placeholder='Số điện thoại'></input>
+                            <input type="text" name="number" class='input-login' placeholder='Số điện thoại'></input>
                         </div>
                         <div class='inner'>
-                            <input class='input-login' placeholder='Mật khẩu' type="password"></input>
+                            <input type="password" name="pass" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
                         <a class='forgot-password'>Quên mật khẩu?</a>
+                        <input type="submit" name="register" class='btn-login' value="ĐĂNG KÝ">
                     </form>
                 </div>
-                <button class='btn-login'>ĐĂNG KÝ</button>
                 <div class='social-media-options'>
                     <span class='divider'></span>
                     <span class='divider-text'>Hoặc đăng ký bằng</span>
