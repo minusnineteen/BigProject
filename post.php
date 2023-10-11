@@ -37,7 +37,7 @@ if(isset($_POST['save'])) {
                 if($row_info['information_code'] == $id) {
             ?>
             <div class="post-big">    
-                <img src= "<?php echo $row_info['picture'] ?>" width="500px" height="500px">
+                <img src= "up/<?php echo $row_info['picture'] ?>" width="500px" height="500px">
             </div>
             <!-- <div class="post-small">                
                 <img src="7.webp" width="100px" height="100px">
