@@ -42,7 +42,7 @@ if($logout == 'logout') {
         <form action="" method="POST"><input placeholder=" Tìm Kiếm... " name="search" type="text"><i class="bx bx-search" name="button" type="submit"></i></form>
     </div>
     <div class="heart">
-        <a href="" class="bx bx-heart"></a>
+        <a href="save.php" class="bx bx-heart"></a>
     </div>
     <div class="massage">
         <a href="" class="bx bx-message-rounded-dots"></a>
@@ -50,12 +50,13 @@ if($logout == 'logout') {
     <div class="user">
         <a href="" class="bx bx-user"></a>
         <ul class="sub-user">
-            <li><a href=""><?php echo $_SESSION['login'] ?></a></li>
             <li><a href="upload.php">Đăng tin</a></li>
-            <li><a href="">Đơn mua</a></li>
-            <li><a href="">Đơn bán</a></li>
+            <!-- <li><a href="">Đơn mua</a></li>
+            <li><a href="">Đơn bán</a></li> -->
+            <li><a href="register.php">Đăng ký</a></li>
             <li><a href="login.php">Đăng nhập</a></li>
             <li><a href="?status=logout">Đăng xuất</a></li>
+            <li><a href=""><?php echo $_SESSION['login'] ?></a></li>
         </ul>
     </div>
 </header>
@@ -80,15 +81,15 @@ if($logout == 'logout') {
 <section id="type">
     <div class="row">
         <div class="button col l-3">
-            <img src="3.png" width="100px" height="100px">
+            <a href="list.php"><img src="3.png" width="100px" height="100px"></a>
             <h1>Mua Bán</h1>
         </div>
         <div class="button col l-3">
-            <img src="4.webp" width="100px" height="100px">
+            <a href="list.php"><img src="4.webp" width="100px" height="100px"></a>
             <h1>Cho Thuê</h1>
         </div>
         <div class="button col l-3">
-            <img src="5.png" width="100px" height="100px">
+            <a href="chart.php"><img src="5.png" width="100px" height="100px"></a>
             <h1>Biểu Đồ</h1>
         </div>
         <div class="button col l-3">

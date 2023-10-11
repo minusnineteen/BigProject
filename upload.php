@@ -10,6 +10,7 @@ if(isset($_POST['upload'])) {
     $business = $_POST['business'];
     $category = $_POST['category'];
     $title = $_POST['title'];
+    $area = $_POST['area'];
     $address = $_POST['address'];
     $price = $_POST['price'];
     $acreage = $_POST['acreage'];
@@ -17,8 +18,8 @@ if(isset($_POST['upload'])) {
     $width = $_POST['width'];
     $description = $_POST['description'];
     $path = 'up/';
-    $sql_insert_post = mysqli_query($con, "insert into tbl_information(phone_number, picture, business_code, category_code, title, address, price, acreage, length, width, description)
-        values('$id', '$img', '$business', '$category', '$title', '$address', '$price', '$acreage', '$length', '$width', '$description')");
+    $sql_insert_post = mysqli_query($con, "insert into tbl_information(phone_number, picture, business_code, category_code, title, address, price, acreage, length, width, description, area_code)
+        values('$id', '$img', '$business', '$category', '$title', '$address', '$price', '$acreage', '$length', '$width', '$description', '$area')");
     move_uploaded_file($img_tmp, $path.$img);    
 }
 ?>
@@ -78,6 +79,20 @@ if(isset($_POST['upload'])) {
         <label>Tiêu đề tin đăng</label><br>
         <input type="text" name="title" placeholder="Tiêu đề" class="form-control"><br>
         <label>Địa chỉ tin đăng</label><br>
+        <?php
+        $sql_area = mysqli_query($con, "select * from tbl_area order by area_code");
+        ?>
+        <select name="area" class="form-control">
+            <option value="0">---Chọn---</option>
+            <?php
+            while($row_area = mysqli_fetch_array($sql_area)) {
+            ?>
+            <option value="<?php echo $row_area['area_code'] ?>"><?php echo $row_area['area_name'] ?></option>
+            <?php
+            }
+            ?>
+        </select>
+        <br>
         <input type="text" name="address" placeholder="Địa chỉ" class="form-control"><br>
         <label>Giá bán</label><br>
         <input type="text" name="price" placeholder="VND" class="form-control"><br>
