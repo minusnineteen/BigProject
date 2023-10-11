@@ -11,7 +11,6 @@ include_once('db/connect.php');
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="ajax.js" type="text/javascript"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <title>Chart</title>
 </head>
@@ -37,40 +36,34 @@ include_once('db/connect.php');
     
     <script type="text/javascript">
          $(document).ready(function(){
-            $(document).ready(function(){
+            var char;
+            var chartData;
+
             $(".province").change(function(){
-            var id = $(".province").val();
-            alert(id);
-        });
-        });
-        var chartData = [
-            <?php
-            
-            $area_code = isset($_POST['select-national']) ? $_POST['select-national']: 1;
-            $sql_info = mysqli_query($con, "select * from tbl_information where area_code = ".$area_code);
-            while($row_info = mysqli_fetch_array($sql_info)){
-            ?>
-            { year: '<?php echo $row_info['date_time']?>', value: '<?php echo $row_info['price']?>' },
-            
-            <?php
-            }
-            ?>
-        ];
+                var area_code = $(".province").val();
+                alert(area_code);
 
-        var char = new Morris.Area({
-            element: 'myfirstchart',
-            data: chartData,
-            xkey: 'year',
-            ykeys: ['value'],
-            labels: ['Giá']
-        });
+                // Fetch data from the server based on the selected option
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_chart_data.php', // Replace with the actual URL
+                    data: { select_national: area_code },
+                    success: function(data) {
+                        chartData = JSON.parse(data);
+                        char.setData(chartData);
+                    }
+                });
+            });
 
-        $('#select-national').on('change', function() {
-            $area_code = $(this).val();
-            console.log($area_code);
-            char.setData(chartData);
+            // Initialize the chart with default data
+            char = new Morris.Area({
+                element: 'myfirstchart',
+                data: chartData,
+                xkey: 'year',
+                ykeys: ['value'],
+                labels: ['Giá']
+            });
         });
-    });
 
     </script>
 </body>
