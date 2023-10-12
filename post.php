@@ -126,7 +126,7 @@ if(isset($_POST['save'])) {
         while($row_rent = mysqli_fetch_array($sql_rent)) {
         ?>
         <div class="item col l-2">
-            <img src="<?php echo $row_rent['picture']?>" width="150px" height="150px">
+            <img src="up/<?php echo $row_rent['picture']?>" width="150px" height="150px">
             <h1><?php echo $row_rent['title']?></h1>
             <p><?php echo $row_rent['acreage']?>m2 - <?php echo $row_rent['room']?> phòng</p>
             <p><?php echo $row_rent['price']?> tỷ</p>

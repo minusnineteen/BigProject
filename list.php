@@ -67,11 +67,11 @@ include_once('db/connect.php');
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
                         order by information_code asc limit ". $item_per_page ." offset ". $offset);
-                    while($row_info = mysqli_fetch_array($sql_info)) {
+                        while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
                             <div class="save-left">
-                                <a href="post.php?id=1"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
+                                <a href="post.php?id="><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
                             </div>
                             <div class="save-right">
                                 <div class="save-right-top">
