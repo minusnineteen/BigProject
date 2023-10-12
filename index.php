@@ -174,4 +174,13 @@ if($logout == 'logout') {
     </div>
 </footer>
 </body>
+<script>
+        const search = document.getElementById('search');
+        document.addEventListener('click', function(event) {
+        if (!search.contains(event.target)) {
+            const openSearchBox = document.getElementById('key');
+            openSearchBox.checked = false;
+        }
+    });
+</script>
 </html>

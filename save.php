@@ -29,7 +29,7 @@ session_start();
             if($row_info['phone_number'] == $number) {
         ?>
         <div class="save-left">
-            <img src="<?php echo $row_info['picture'] ?>" width="100px" height="100px">
+            <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px">
         </div>
         <div class="save-right">
             <div class="save-right-top">
