@@ -108,7 +108,7 @@ if($logout == 'logout') {
         while($row_sell = mysqli_fetch_array($sql_sell)) {
         ?>
         <div class="item col l-2">
-            <img src="up/<?php echo $row_sell['picture']?>" width="150px" height="150px">
+            <a href="post.php?id=<?php echo $row_sell['information_code'] ?>"><img src="up/<?php echo $row_sell['picture']?>" width="150px" height="150px"></a>
             <h1><?php echo $row_sell['title']?></h1>
             <p><?php echo $row_sell['acreage']?>m2 - <?php echo $row_sell['room']?> phòng</p>
             <p><?php echo $row_sell['price']?> tỷ</p>
@@ -131,7 +131,7 @@ if($logout == 'logout') {
         while($row_rent = mysqli_fetch_array($sql_rent)) {
         ?>
         <div class="item col l-2">
-            <img src="up/<?php echo $row_rent['picture']?>" width="150px" height="150px">
+            <a href="post.php?id=<?php echo $row_rent['information_code'] ?>"><img src="up/<?php echo $row_rent['picture']?>" width="150px" height="150px"></a>
             <h1><?php echo $row_rent['title']?></h1>
             <p><?php echo $row_rent['acreage']?>m2 - <?php echo $row_rent['room']?> phòng</p>
             <p><?php echo $row_rent['price']?> tỷ</p>

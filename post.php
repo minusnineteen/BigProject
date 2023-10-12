@@ -122,14 +122,14 @@ if(isset($_POST['save'])) {
     </div>
     <div class="row">
         <?php
-        $sql_rent = mysqli_query($con, "select * from tbl_information order by information_code desc limit 6");
-        while($row_rent = mysqli_fetch_array($sql_rent)) {
+        $sql_hot = mysqli_query($con, "select * from tbl_information order by information_code desc limit 6");
+        while($row_hot = mysqli_fetch_array($sql_hot)) {
         ?>
         <div class="item col l-2">
-            <img src="up/<?php echo $row_rent['picture']?>" width="150px" height="150px">
-            <h1><?php echo $row_rent['title']?></h1>
-            <p><?php echo $row_rent['acreage']?>m2 - <?php echo $row_rent['room']?> phòng</p>
-            <p><?php echo $row_rent['price']?> tỷ</p>
+            <a href="post.php?id=<?php echo $row_hot['information_code'] ?>"><img src="up/<?php echo $row_hot['picture']?>" width="150px" height="150px"></a>
+            <h1><?php echo $row_hot['title']?></h1>
+            <p><?php echo $row_hot['acreage']?>m2 - <?php echo $row_hot['room']?> phòng</p>
+            <p><?php echo $row_hot['price']?> tỷ</p>
         </div>
         <?php
         }
