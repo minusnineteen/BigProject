@@ -71,7 +71,7 @@ include_once('db/connect.php');
                     ?>
                         <div class='save-row-wrapper'>
                             <div class="save-left">
-                                <a href="post.php?id=1"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
+                                <a href="post.php?id=<?php echo $row_info['information_code'] ?>"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
                             </div>
                             <div class="save-right">
                                 <div class="save-right-top">
