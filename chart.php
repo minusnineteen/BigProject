@@ -41,7 +41,6 @@ include_once('db/connect.php');
 
             $(".province").change(function(){
                 var area_code = $(".province").val();
-
                 // Fetch data from the server based on the selected option
                 $.ajax({
                     type: 'POST',

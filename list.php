@@ -67,7 +67,7 @@ include_once('db/connect.php');
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
                         order by information_code asc limit ". $item_per_page ." offset ". $offset);
-                    while($row_info = mysqli_fetch_array($sql_info)) {
+                        while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
                             <div class="save-left">
