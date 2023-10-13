@@ -36,18 +36,17 @@ include_once('db/connect.php');
     
     <script type="text/javascript">
          $(document).ready(function(){
-            var char;
             var chartData;
 
             $(".province").change(function(){
                 var area_code = $(".province").val();
-                // Fetch data from the server based on the selected option
                 $.ajax({
                     type: 'POST',
-                    url: 'get_chart_data.php', // Replace with the actual URL
+                    url: 'get_chart_data.php', 
                     data: { select_national: area_code },
                     success: function(data) {
                         chartData = JSON.parse(data);
+                        console.log(chartData);
                         char.setData(chartData);
                     }
                 });
@@ -59,8 +58,16 @@ include_once('db/connect.php');
                 data: chartData,
                 xkey: 'year',
                 ykeys: ['value'],
-                labels: ['Giá']
+                labels: ['Giá'],
+                parseTime: false, // Tắt tự động định dạng thời gian
+                xLabelAngle: 0, // Đặt góc xoay về 0 độ (ngang)
+                padding: 60,
+                hoverCallback: function (index, options, content, row) {
+                var formattedValue = '<span style="font-size: 16px;">Giá: ' + row.value + ' Tỷ</span>'; // Đặt font-size ở đây
+                return formattedValue;
+            },
             });
+            
         });
 
     </script>
