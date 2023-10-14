@@ -62,9 +62,15 @@ if(isset($_POST['save'])) {
                 <div class="post-price-right">
                     <i class='bx bx-share'></i>
                     <i class='bx bx-heart'></i>
+                    <?php
+                    if(isset($_SESSION['id'])) {
+                    ?>
                     <form method="POST">
                         <input type="submit" name="save" value="Lưu">
                     </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="post-info">
@@ -95,7 +101,7 @@ if(isset($_POST['save'])) {
                             if($row_account['information_code'] == $id) {
                         ?>
                         <p><?php echo $row_account['name'] ?></p>
-                        <a href="">Xem trang</a>
+                        <a href="personal.php?phone_number=<?php echo $row_account['phone_number'] ?>">Xem trang</a>
                         <?php
                             }
                         }

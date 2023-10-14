@@ -2,6 +2,12 @@
 include_once('db/connect.php');
 session_start();
 ?>
+<?php
+if(isset($_POST['del'])) {
+    $id = $_POST['id'];
+    $sql_del = mysqli_query($con, "delete from tbl_favorite where favorite_code = $id");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +46,10 @@ session_start();
             <div class="save-right-bottom">
                 <p></p>
                 <i class='bx bxs-heart'></i>
+                <form method="POST">
+                    <input type="submit" name="del" value="Xóa">
+                    <input type="hidden" name="id" value="<?php echo $row_info['favorite_code'] ?>">
+                </form>
             </div>
         </div>
         <?php
