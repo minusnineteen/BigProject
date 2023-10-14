@@ -95,7 +95,7 @@ if(isset($_POST['save'])) {
                             if($row_account['information_code'] == $id) {
                         ?>
                         <p><?php echo $row_account['name'] ?></p>
-                        <a href="">Xem trang</a>
+                        <a href="personal.php?phone_number=<?php echo $row_account['phone_number'] ?>">Xem trang</a>
                         <?php
                             }
                         }
