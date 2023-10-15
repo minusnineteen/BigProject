@@ -3,8 +3,8 @@ include_once('../db/connect.php');
 ?>
 <?php
 session_start();
-if(!isset($_SESSION['login'])) {
-    header('Location: index.php');
+if(!isset($_SESSION['login_admin'])) {
+    header('Location: dashboard.php');
 }
 ?>
 <?php
@@ -14,8 +14,14 @@ if(isset($_GET['status'])) {
     $logout = '';
 }
 if($logout == 'logout') {
-    unset($_SESSION['login']);
+    unset($_SESSION['login_admin']);
     header('Location: index.php');
+}
+?>
+<?php
+if(isset($_GET['del'])) {
+    $id = $_GET['del'];
+    $sql_del = mysqli_query($con, "delete from tbl_information where information_code = $id");
 }
 ?>
 <!DOCTYPE html>
@@ -40,7 +46,7 @@ if($logout == 'logout') {
     <title>Chào Mừng</title>
 </head>
 <body>
-    <h1 align="center"><?php echo $_SESSION['login'] ?></h1>
+    <h1 align="center">Admin</h1>
     <p align="center"><a href="?status=logout">Đăng xuất</a></p>
     <div class="row">
     <div>
@@ -60,7 +66,7 @@ if($logout == 'logout') {
                 <th>Hình ảnh</th>
                 <th>Tiêu đề</th>
                 <th>Địa chỉ</th>
-                <th>Giá</th>
+                <th>Giá (tỷ)</th>
                 <th>Diện tích</th>
                 <th>Số phòng</th>
                 <th>Người đăng</th>
@@ -82,7 +88,7 @@ if($logout == 'logout') {
                 <td><?php echo $row_post['acreage'] ?></td>
                 <td><?php echo $row_post['room'] ?></td>
                 <td><?php echo $row_post['name'] ?></td>
-                <td><a href="?edit=<?php echo $row_post['information_code'] ?>">Xem</a> | <a href="?del=<?php echo $row_post['information_code'] ?>">Xóa</a></td>
+                <td><a href="../post.php?id=<?php echo $row_post['information_code'] ?>">Xem</a> | <a href="?del=<?php echo $row_post['information_code'] ?>">Xóa</a></td>
             </tr>
             <?php
             }

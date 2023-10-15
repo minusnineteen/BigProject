@@ -1,20 +1,20 @@
 <?php
-session_start();
 include_once('../db/connect.php');
+session_start();
 ?>
 <?php
-if(isset($_POST['login'])) {
+if(isset($_POST['login_admin'])) {
     $user = $_POST['user'];
     $pass = md5($_POST['pass']);
     if($user == '' || $pass == '') {
-        echo '<p>Error!<p>';
+        echo '<p>Nhập đầy đủ!<p>';
     } else {
         $sql_admin = mysqli_query($con, "select * from tbl_admin where user = '$user' and pass = '$pass' limit 1");
-        $count = mysqli_num_rows($sql_admin);
-        $row_login = mysqli_fetch_array($sql_admin);
-        if($count > 0) {
-            $_SESSION['login'] = $row_login['name'];
-            $_SESSION['admin_id'] = $row_login['id'];
+        $count_admin = mysqli_num_rows($sql_admin);
+        $row_admin = mysqli_fetch_array($sql_admin);
+        if($count_admin > 0) {
+            $_SESSION['admin_id'] = $row_admin['id'];
+            $_SESSION['login_admin'] = $row_admin['user'];
             header('Location: dashboard.php');
         } else {
             echo '<p>Error!<p>';
@@ -36,7 +36,7 @@ if(isset($_POST['login'])) {
             <input type="text" name="user" placeholder="Nhập id" class="from-control"><br>
             <label>Mật khẩu</label><br>
             <input type="password" name="pass" placeholder="Nhập mật khẩu" class="from-control"><br>
-            <input type="submit" name="login" value="Đăng nhập admin">
+            <input type="submit" name="login_admin" value="Đăng nhập admin">
         </form>
     </div>
 </body>
