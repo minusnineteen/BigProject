@@ -51,10 +51,15 @@ if(isset($_GET['del_post'])) {
         .user {
             display: none;
         }
+        .info {
+            text-align: center;
+        }
+        .info1, .info2 {
+            cursor: pointer;
+        }
         .top {
             justify-content: space-evenly;
             align-items: center;
-
         }
     </style>
     <title>Chào Mừng</title>
@@ -62,9 +67,9 @@ if(isset($_GET['del_post'])) {
 <body>
     <h1 align="center">Admin</h1>
     <p align="center"><a href="?status=logout">Đăng xuất</a></p>
-    <div align="center">
-        <a class="info2">Danh sách tin đăng</a><br>
-        <a class="info1">Danh sách tài khoản</a>
+    <div class="info">
+        <p><a class="info2">Danh sách tin đăng</a> | 
+        <a class="info1">Danh sách tài khoản</a></p>
     </div>
     <div class="post">
         <div class="top row">
@@ -84,14 +89,17 @@ if(isset($_GET['del_post'])) {
                     or tbl_information.price like '%$search_term%'
                     or tbl_account.name like '%$search_term%'
                 )
-                order by information_code desc";
+                order by information_code desc limit 100";
             $result_post = mysqli_query($con, $sql_search);
+            $sql_count_post = mysqli_query($con, "select * from tbl_information");
+            $count_search_term = mysqli_num_rows($sql_count_post);
             ?>
             <form action="" method="get">
                 <input type="text" name="search_term" placeholder="Search...">
                 <input type="submit" value="Search">
             </form>
-        </div>    
+        </div>
+        <p align="center">Có tất cả <?php echo $count_search_term ?> tin đăng</p>    
         <table class="post">
             <tr>
                 <th>STT</th>
@@ -139,8 +147,10 @@ if(isset($_GET['del_post'])) {
             }
             $sql_account = "select * from tbl_account
                 where name like '%$search%'
-                or phone_number like '%$search%'";
+                or phone_number like '%$search%' limit 100";
             $result_user = mysqli_query($con, $sql_account);
+            $sql_count_user = mysqli_query($con, "select * from tbl_account");
+            $count_search = mysqli_num_rows($sql_count_user);
             ?>
             <br>
             <form action="" method="get">
@@ -148,6 +158,7 @@ if(isset($_GET['del_post'])) {
                 <input type="submit" value="Search">
             </form>
         </div>
+        <p align="center">Có tất cả <?php echo $count_search ?> tài khoản</p>    
         <table>
             <tr>
                 <th>STT</th>
