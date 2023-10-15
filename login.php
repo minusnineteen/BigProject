@@ -5,11 +5,11 @@ session_start();
 <?php
 if(isset($_POST['login'])) {
     $number = $_POST['number'];
-    $pass = $_POST['pass'];
-    if($number == '' || $pass == '') {
+    $password = $_POST['password'];
+    if($number == '' || $password == '') {
         echo '<p>Nhập đầy đủ!<p>';
     } else {
-        $sql_login = mysqli_query($con, "select * from tbl_account where phone_number = '$number' and password = '$pass' limit 1");
+        $sql_login = mysqli_query($con, "select * from tbl_account where phone_number = '$number' and password = '$password' limit 1");
         $count = mysqli_num_rows($sql_login);
         $row_login = mysqli_fetch_array($sql_login);
         if($count > 0) {
@@ -44,7 +44,7 @@ if(isset($_POST['login'])) {
                             <input type="text" name="number" class='input-login' placeholder='Số điện thoại'></input>
                         </div>
                         <div class='inner'>
-                            <input type="password" name="pass" class='input-login' placeholder='Mật khẩu'></input>
+                            <input type="password" name="password" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
                         <a class='forgot-password'>Quên mật khẩu?</a>
                         <input type="submit" name="login" class='btn-login' value="ĐĂNG NHẬP">

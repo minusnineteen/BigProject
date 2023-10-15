@@ -62,9 +62,15 @@ if(isset($_POST['save'])) {
                 <div class="post-price-right">
                     <i class='bx bx-share'></i>
                     <i class='bx bx-heart'></i>
+                    <?php
+                    if(isset($_SESSION['id'])) {
+                    ?>
                     <form method="POST">
                         <input type="submit" name="save" value="Lưu">
                     </form>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="post-info">

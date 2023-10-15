@@ -104,8 +104,8 @@ include_once('db/connect.php');
                     }
                     
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
-                    and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,information_code asc
-                    limit ". $item_per_page ." offset ". $offset);                    
+                    and business_code = 1 and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
+                    information_code asc limit ". $item_per_page ." offset ". $offset);                    
                         while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
@@ -148,7 +148,8 @@ include_once('db/connect.php');
                     
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
                     $sql_info = mysqli_query($con, "select count(*) AS total_rows from tbl_information
-                    where category_code = ".$category." and price > ".$value_left." and price <= ".$value_right);
+                    where category_code = ".$category." and business_code = 1 and price > ".$value_left."
+                    and price <= ".$value_right);
                     $row = mysqli_fetch_assoc($sql_info);
                     $total_rows = $row['total_rows'];
                     $page_number = $total_rows/10;
