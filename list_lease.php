@@ -1,4 +1,5 @@
 <?php
+ini_set('session.cookie_lifetime', 86400); // 86400 seconds (1 day)
 include_once('db/connect.php');
 ?>
 <!DOCTYPE html>
@@ -13,6 +14,21 @@ include_once('db/connect.php');
     <title>Trang Chủ</title>
 </head>
 <body>
+<script>
+    $(document).ready(function() {
+        $("#select").change(function() {
+            var selectedValue = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "get_area_id.php",
+                data: { area_id: selectedValue },
+                success: function(data) {
+                    selectedValue = JSON.parse(data);
+                }
+            });
+        });
+    });
+</script>
 <section id="filter" class='list-container'>
     <div class="body-wrapper">
         <div class="body-left">
@@ -59,7 +75,28 @@ include_once('db/connect.php');
                 </div>
             </div>
             <div class="arrange-wrapper">
-                <span>Bộ lọc</span>
+                <select class='form-control province' id='select' style='width: 90px;' onchange="reloadPage(this)">
+                    <option>Khu vực</option>
+                    <?php
+                        $sql_info = mysqli_query($con, "select * from tbl_area");
+                        $i = 1; 
+                        while($row_info = mysqli_fetch_array($sql_info)){
+                    ?>
+                        <option value="<?php echo $i; ?>"><?php echo $row_info['area_name']; ?></option>  
+                    <?php
+                        $i++;
+                        }
+                    ?>
+                </select>
+                <script>
+                function reloadPage(selectElement) {
+                    // Get the selected value from the <select>
+                    var selectedValue = selectElement.value;
+                    
+                    // Reload the page
+                    location.reload();
+                }
+                </script>
                 <a href="?filter=1">Dưới 2 tỷ</a>
                 <a href="?filter=2">2 tỷ - 4 tỷ</a>
                 <a href="?filter=3">4 tỷ - 10 tỷ</a>
@@ -103,8 +140,10 @@ include_once('db/connect.php');
                         $orderByClause = " ORDER BY price DESC";
                     }
                     
+                    $area_id = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 1;
+                    $area = "and area_code = ".$area_id;
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
-                    and business_code = 2 and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
+                    and business_code = 2 ".$area." and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
                     information_code asc limit ". $item_per_page ." offset ". $offset);                    
                         while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
@@ -148,7 +187,7 @@ include_once('db/connect.php');
                     
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
                     $sql_info = mysqli_query($con, "select count(*) AS total_rows from tbl_information
-                    where category_code = ".$category." and business_code = 2 and price > ".$value_left."
+                    where category_code = ".$category." ".$area." and business_code = 2 and price > ".$value_left."
                     and price <= ".$value_right);
                     $row = mysqli_fetch_assoc($sql_info);
                     $total_rows = $row['total_rows'];

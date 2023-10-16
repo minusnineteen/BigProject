@@ -46,7 +46,6 @@ include_once('db/connect.php');
                     data: { select_national: area_code },
                     success: function(data) {
                         chartData = JSON.parse(data);
-                        console.log(chartData);
                         char.setData(chartData);
                     }
                 });
