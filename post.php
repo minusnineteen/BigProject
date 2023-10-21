@@ -98,6 +98,7 @@ if(isset($_POST['save'])) {
                         $id = $_GET['id'];
                         $sql_account = mysqli_query($con, 'select * from tbl_information inner join tbl_account on tbl_information.phone_number = tbl_account.phone_number');
                         while($row_account = mysqli_fetch_array($sql_account)) {
+                            $phone_number = $row_account['phone_number'];
                             if($row_account['information_code'] == $id) {
                         ?>
                         <p><?php echo $row_account['name'] ?></p>
@@ -114,7 +115,8 @@ if(isset($_POST['save'])) {
                         <i class='bx bx-phone-call'> Liên hệ </i>
                     </div>
                     <div class="account-chat">
-                        <i class='bx bx-conversation'> Nhắn tin </i>
+                        <a href="chat_box.php?phone_number=<?php echo $phone_number?>"> Nhắn tin </a>
+                        
                     </div>
                 </div>
             </div>
