@@ -33,8 +33,8 @@ if($logout == 'logout') {
         <li>
             <a><i class="bx bx-menu"></i>Danh Mục</a>
             <ul class="sub-type">
-                <li><a href="">Mua Bán</a></li>
-                <li><a href="">Cho Thuê</a></li>
+                <li><a href="list_purchase.php">Mua Bán</a></li>
+                <li><a href="list_lease.php">Cho Thuê</a></li>
             </ul>
         </li>
     </div>
@@ -81,11 +81,11 @@ if($logout == 'logout') {
 <section id="type">
     <div class="row">
         <div class="button col l-3">
-            <a href="list.php"><img src="3.png" width="100px" height="100px"></a>
+            <a href="list_purchase.php"><img src="3.png" width="100px" height="100px"></a>
             <h1>Mua Bán</h1>
         </div>
         <div class="button col l-3">
-            <a href="list.php"><img src="4.webp" width="100px" height="100px"></a>
+            <a href="list_lease.php"><img src="4.webp" width="100px" height="100px"></a>
             <h1>Cho Thuê</h1>
         </div>
         <div class="button col l-3">

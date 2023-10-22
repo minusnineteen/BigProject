@@ -104,6 +104,7 @@ if(isset($_POST['save'])) {
                         <p><?php echo $row_account['name'] ?></p>
                         <a href="personal.php?phone_number=<?php echo $row_account['phone_number'] ?>">Xem trang</a>
                         <?php
+                            $_SESSION['phone_user'] = $row_account['phone_number'];
                             }
                         }
                         ?>
@@ -115,7 +116,7 @@ if(isset($_POST['save'])) {
                         <i class='bx bx-phone-call'> Liên hệ </i>
                     </div>
                     <div class="account-chat">
-                        <a href="chat_box.php?phone_number=<?php echo $phone_number?>"> Nhắn tin </a>
+                        <a href="chat_box.php?phone_number=<?php echo $_SESSION['phone_user'] ?>"> Nhắn tin </a>
                         
                     </div>
                 </div>

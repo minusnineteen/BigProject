@@ -1,6 +1,7 @@
 <?php
 ini_set('session.cookie_lifetime', 86400); // 86400 seconds (1 day)
 include_once('db/connect.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,7 +111,6 @@ include_once('db/connect.php');
             <div class="save-wrapper">
                 <div>
                     <?php
-                    session_start();
                     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $item_per_page;
