@@ -25,41 +25,9 @@ if($logout == 'logout') {
     <title>Trang Chủ</title>
 </head>
 <body>
-<header>
-    <div class="logo">
-    	<img src="" alt="Logo">
-    </div>
-    <div class="type">
-        <li>
-            <a><i class="bx bx-menu"></i>Danh Mục</a>
-            <ul class="sub-type">
-                <li><a href="list_purchase.php">Mua Bán</a></li>
-                <li><a href="list_lease.php">Cho Thuê</a></li>
-            </ul>
-        </li>
-    </div>
-    <div class="search">
-        <form action="" method="POST"><input placeholder=" Tìm Kiếm... " name="search" type="text"><i class="bx bx-search" name="button" type="submit"></i></form>
-    </div>
-    <div class="heart">
-        <a href="save.php" class="bx bx-heart"></a>
-    </div>
-    <div class="massage">
-        <a href="" class="bx bx-message-rounded-dots"></a>
-    </div>
-    <div class="user">
-        <a href="" class="bx bx-user"></a>
-        <ul class="sub-user">
-            <li><a href="upload.php">Đăng tin</a></li>
-            <!-- <li><a href="">Đơn mua</a></li>
-            <li><a href="">Đơn bán</a></li> -->
-            <li><a href="register.php">Đăng ký</a></li>
-            <li><a href="login.php">Đăng nhập</a></li>
-            <li><a href="?status=logout">Đăng xuất</a></li>
-            <li><a href=""><?php echo $_SESSION['login'] ?></a></li>
-        </ul>
-    </div>
-</header>
+    <?php
+    include('incl/header.php');
+    ?>
 <section id="slider">
     <div class="slider-show">
         <div class="slider">
@@ -148,31 +116,9 @@ if($logout == 'logout') {
 <!-- <div id="backtop">
     <i class='bx bx-chevron-up'></i>
 </div> -->
-<footer>
-    <div class="contact">
-        <div class="footer-left">
-            <img src="" alt="Logo"/>
-            <h1>TÊN CÔNG TY</h1>
-            <p>Địa Chỉ<br>
-            (024) 1234 1234</p>
-        </div>
-        <div class="footer-right">
-            <div class="hotline">
-                <i class='bx bxs-phone-call'> Hotline </i>
-                <p>1900 1234</p>
-            </div>
-            <div class="support">
-                <i class='bx bxs-user-voice'> Hỗ trợ khách hàng </i>
-                <p>hotro@email.com</p>
-            </div>
-            <div class="care">
-            </div>
-                <i class='bx bx-support'> Chăm sóc khách hàng </i>
-                <p>chamsoc@email.com</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 <script>
         const search = document.getElementById('search');
