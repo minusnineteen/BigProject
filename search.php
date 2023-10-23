@@ -32,70 +32,41 @@ if(isset($_POST['search'])) {
     <title>Trang Chủ</title>
 </head>
 <body>
-<header>
-    <div class="logo">
-    	<img src="" alt="Logo">
-    </div>
-    <div class="type">
-        <li>
-            <a><i class="bx bx-menu"></i>Danh Mục</a>
-            <ul class="sub-type">
-                <li><a href="">Mua Bán</a></li>
-                <li><a href="">Cho Thuê</a></li>
-            </ul>
-        </li>
-    </div>
-    <div class="search">
-        <form action="" method="POST"><input placeholder=" Tìm Kiếm... " name="search" type="text"><i class="bx bx-search" name="button" type="submit"></i></form>
-    </div>
-    <div class="heart">
-        <a href="save.php" class="bx bx-heart"></a>
-    </div>
-    <div class="massage">
-        <a href="" class="bx bx-message-rounded-dots"></a>
-    </div>
-    <div class="user">
-        <a href="" class="bx bx-user"></a>
-        <ul class="sub-user">
-            <li><a href="upload.php">Đăng tin</a></li>
-            <!-- <li><a href="">Đơn mua</a></li>
-            <li><a href="">Đơn bán</a></li> -->
-            <li><a href="register.php">Đăng ký</a></li>
-            <li><a href="login.php">Đăng nhập</a></li>
-            <li><a href="?status=logout">Đăng xuất</a></li>
-            <li><a href=""><?php echo $_SESSION['login'] ?></a></li>
-        </ul>
-    </div>
-</header>
-<section id="save">
-    <h1>Tìm kiếm</h1>
-    <div class="save row">
-        <?php
-        while($row_info = mysqli_fetch_array($sql_search)) {
-        ?>
-        <div class="save-left">
-            <a href="post.php?id=<?php echo $row_info['information_code'] ?>"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
-        </div>
-        <div class="save-right">
-            <div class="save-right-top">
-                <p><?php echo $row_info['title'] ?></p>
-                <p><?php echo $row_info['acreage'] ?> m<sup>2</sup> - <?php echo $row_info['room'] ?> phòng</p>
-                <p><?php echo $row_info['price'] ?> tỷ</p>
+    <?php
+    include('incl/header.php');
+    ?>
+    <section id="save">
+        <h1>Tìm kiếm</h1>
+        <div class="save row">
+            <?php
+            while($row_info = mysqli_fetch_array($sql_search)) {
+            ?>
+            <div class="save-left">
+                <a href="post.php?id=<?php echo $row_info['information_code'] ?>"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
             </div>
-            <div class="save-right-bottom">
-                <p></p>
-                <i class='bx bxs-heart'></i>
+            <div class="save-right">
+                <div class="save-right-top">
+                    <p><?php echo $row_info['title'] ?></p>
+                    <p><?php echo $row_info['acreage'] ?> m<sup>2</sup> - <?php echo $row_info['room'] ?> phòng</p>
+                    <p><?php echo $row_info['price'] ?> tỷ</p>
+                </div>
+                <div class="save-right-bottom">
+                    <p></p>
+                    <i class='bx bxs-heart'></i>
+                </div>
             </div>
+            <?php
+            }
+            ?>
         </div>
-        <?php
-        }
-        ?>
-    </div>
-</section>
+    </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 <script>
-        const search = document.getElementById('search');
-        document.addEventListener('click', function(event) {
+    const search = document.getElementById('search');
+    document.addEventListener('click', function(event) {
         if (!search.contains(event.target)) {
             const openSearchBox = document.getElementById('key');
             openSearchBox.checked = false;

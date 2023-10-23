@@ -15,7 +15,6 @@ if(isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="register.css">
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Đăng Ký</title>
@@ -36,7 +35,7 @@ if(isset($_POST['register'])) {
                         <div class='inner'>
                             <input type="password" name="pass" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
-                        <a class='forgot-password'>Quên mật khẩu?</a>
+                        <!-- <a class='forgot-password'>Quên mật khẩu?</a> -->
                         <input type="submit" name="register" class='btn-login' value="ĐĂNG KÝ">
                     </form>
                 </div>

@@ -51,13 +51,13 @@ if(isset($_POST['edit'])) {
 <body>
 <style>
     body {
-        background-color: #ccc;
+        background-color: #f4f4f4;
     }
 </style>
 <section id="upload">
     <h1>Sửa Tin</h1>
     <form action="" method="POST" enctype="multipart/form-data">
-        <label>Đăng hình ảnh</label><br>
+        <label>Sửa hình ảnh</label><br>
         <input type="file" name="img" placeholder="Hình ảnh" class="form-control"><br>
         <label>Danh mục</label><br>
         <?php
@@ -91,7 +91,7 @@ if(isset($_POST['edit'])) {
         <br>
         <label>Tiêu đề tin đăng</label><br>
         <input type="text" name="title" placeholder="Tiêu đề" class="form-control"><br>
-        <input type="text" name="room" placeholder="Phòng" class="form-control"><br>
+        <!-- <input type="text" name="room" placeholder="Phòng" class="form-control"><br> -->
         <label>Địa chỉ tin đăng</label><br>
         <?php
         $sql_area = mysqli_query($con, "select * from tbl_area order by area_code");
@@ -118,7 +118,7 @@ if(isset($_POST['edit'])) {
         <input type="text" name="width" placeholder="" class="form-control"><br>
         <label>Mô tả</label><br>
         <textarea name="description" class="form-control"></textarea><br>
-        <input type="submit" name="edit" value="Đăng Tin">
+        <input type="submit" name="edit" value="Sửa Tin">
     </form>
 </section>
 </body>

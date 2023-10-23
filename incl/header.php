@@ -12,7 +12,7 @@
         </li>
     </div>
     <div class="search">
-        <form action="" method="POST"><input placeholder=" Tìm Kiếm... " name="search" type="text"><i class="bx bx-search" name="button" type="submit"></i></form>
+        <form action="search.php" method="POST"><input placeholder=" Tìm Kiếm... " name="search" type="text"><i class="bx bx-search" name="button" type="submit"></i></form>
     </div>
     <div class="heart">
         <a href="save.php" class="bx bx-heart"></a>

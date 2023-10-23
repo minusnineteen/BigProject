@@ -127,7 +127,7 @@ header.sticky {
     padding: 10px 0;
 }
 footer {
-    margin-top: 5%;
+    /* margin-top: 5%; */
     padding: 5%;
     background-color: #ccc;
 }
@@ -221,15 +221,21 @@ footer {
     border: 5px solid green;
 }
 .account-call i {
-    padding: 10px;
+    margin: 10px;
     font-size: 20px;
     color: green;
 }
 .account-chat {
     margin-top: 10px;
+    padding: 10px;
+    color: white;
     background-color: green;
 }
 .account-chat i {
+    font-size: 20px;
+    color: white;
+}
+.account-chat a {
     padding: 10px;
     font-size: 20px;
     color: white;
@@ -243,10 +249,10 @@ footer {
     background-color: white;
 }
 .save-left {
-    width: 30%;
+    width: 20%;
 }
 .save-right {
-    width: 70%;
+    width: 80%;
 }
 .save-right-top p:first-child {
     font-size: 18px;
@@ -273,9 +279,12 @@ footer {
 .list-container{
     background-color: #f4f4f4;
 }
+.body-wrapper {
+    margin-top: 100px;
+}
 .body-left{
     justify-content: center; 
-    margin: 0px 59px 0px 59px;
+    margin: 0px 350px 0px 400px;
 }
 .body-left-top {
     display: flex;
@@ -365,16 +374,129 @@ footer {
     margin-top: 8px;
 }
 .arrange-wrapper a {
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 5px;
     padding: 5px 12px;
 }
-
 .arrange-wrapper span{
     margin-top: 11px;
     margin-left: 2px;
 }
-/*chat box*/
+/* login */
+.login-layout{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    background-color: #f4f4f4;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 95svh;
+    padding: 100px;
+}
+.form-login-wrapper{
+    width: 440px;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 32px 40px;
+    box-shadow: 0 0 8px rgba(30,40,60,.1);
+    height: 547px;
+}
+.login-title{
+    margin: 10px 0 20px 0;
+    font-size: 32px;
+    text-align: center;
+    font-family: sans-serif;
+}
+.login-inf-wrapper{
+    width: 100%;
+}
+.inner{
+    height: 100%;
+    margin-bottom: 16px;
+    border: 0.1px silver;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.input-login{
+    height: 46px;
+    padding: 2px 12px;
+    width: calc(100% - 28px);
+    font-size: .875rem;
+    color: #222;    
+    
+}
+.forgot-password{
+    display: inline-block;
+    color: #306bd9!important;
+    margin-bottom: 16px;
+}
+.btn-login{
+    width: 100%;
+    color: #fff;
+    font-weight: 700;
+    padding: 14px 19px;
+    cursor: pointer;
+    background-color: #f80;
+    border-radius: 4px;
+    border: 0;
+}
+.social-media-options{
+    color: #595959;
+    margin: 30px 12px;
+    display: flex;
+    width: 100%;
+    width: calc(100% - 24px);
+}
+.divider-text{
+    white-space: nowrap;
+}
+.divider{
+    width: 100%;
+    border-top: 1px solid;
+    margin: 9px 10px;
+}
+.login-method{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.btn-wrapper{
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid silver;
+    font-weight: 700;
+    color: #222;
+    padding: 1px 8px;
+    background-color: #fff;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    + .btn-wrapper{
+        margin-left: 16px;
+    }
+}
+.btn-icon{
+    margin-right: 8px;
+}
+.footer{
+    text-align: center;
+    color: #595959;
+    margin-top: 24px;
+}
+.register-option{
+    cursor: pointer;
+    color: #306bd9;
+    font-weight: 700;
+    margin-left: 4px;
+}
+/* register */
+
+/* chat */
 .chat-box{
     display: flex;
     justify-content: center;

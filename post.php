@@ -19,14 +19,18 @@ if(isset($_POST['save'])) {
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Tin Đăng</title>
+    <style>
+        body {
+            margin-top: 100px;
+            border-left: 100px solid #ccc;
+            border-right: 100px solid #ccc;
+        }
+    </style>
 </head>
 <body>
-<style>
-    body {
-        border-left: 100px solid #ccc;
-        border-right: 100px solid #ccc;
-    }
-</style>
+    <?php
+    include('incl/header.php');
+    ?>
 <section id="post">
     <div class="post row">
         <div class="post-left row">
@@ -116,8 +120,7 @@ if(isset($_POST['save'])) {
                         <i class='bx bx-phone-call'> Liên hệ </i>
                     </div>
                     <div class="account-chat">
-                        <a href="chat_box.php?phone_number=<?php echo $_SESSION['phone_user'] ?>"> Nhắn tin </a>
-                        
+                        <i class='bx bx-chat'><a href="chat_box.php?phone_number=<?php echo $_SESSION['phone_user'] ?>"> Nhắn tin </a></i>
                     </div>
                 </div>
             </div>
@@ -148,5 +151,8 @@ if(isset($_POST['save'])) {
         <h3>Xem thêm</h3>
     </div>
 </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 </html>

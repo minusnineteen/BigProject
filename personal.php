@@ -20,9 +20,17 @@ if(isset($_POST['del'])) {
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Trang cá nhân</title>
+    <style>
+        body {
+            margin-top: 100px;
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
-    
+    <?php
+    include('incl/header.php');
+    ?>
 <section id="save">
     <?php
     $phone_number = isset($_GET['phone_number']) ? $_GET['phone_number'] : $_SESSION['id'];
@@ -39,14 +47,13 @@ if(isset($_POST['del'])) {
                 <p><?php echo $row_info['acreage']?> m<sup>2</sup> - <?php echo $row_info['room']?> phòng</p>
                 <p><?php echo $row_info['price']?> tỷ</p>
             </div>
-            <div class="save-right-bottom">
-                <p></p>
-                <i class='bx bx-heart'></i>
+            <div class="save-right-bottom row">
                 <form method="POST">
                     <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>"
                     class="edit-link">Sửa</a>
                     <input type="hidden" name="information_code" value="<?php echo $row_info['information_code'] ?>">
                     <input type="submit" name="del" value="Xóa">
+                    <i class='bx bx-heart'></i>
                 </form>
             </div>
         </div>
@@ -55,5 +62,8 @@ if(isset($_POST['del'])) {
     }
     ?>
 </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 </html>

@@ -15,6 +15,9 @@ session_start();
     <title>Trang Chủ</title>
 </head>
 <body>
+    <?php
+    include('incl/header.php');
+    ?>
 <script>
     $(document).ready(function() {
         $("#select").change(function() {
@@ -223,5 +226,8 @@ session_start();
             </div>
         </div>
     </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 </html>

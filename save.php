@@ -22,7 +22,7 @@ if(isset($_POST['del'])) {
 <body>
 <style>
     body {
-        background-color: #ccc;
+        background-color: #f4f4f4;
     }
 </style>
 <section id="save">

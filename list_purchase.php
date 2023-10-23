@@ -18,6 +18,9 @@ include_once('db/connect.php');
 session_start();
 ?>
 <body>
+    <?php
+    include('incl/header.php');
+    ?>
 <script>
     $(document).ready(function() {
         $("#select").change(function() {
@@ -42,7 +45,7 @@ session_start();
                         <a href="?category=2" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/house.jpg" class="quick-filter-item-icon">
-                                <span>Nhà ở</span>
+                                <span>Nhà</span>
                             </div>
                         </a>
                     </div>
@@ -62,7 +65,7 @@ session_start();
                         <a href="?category=3" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/apartment.jpg" class="quick-filter-item-icon">
-                                <span>Căn hộ/Chung cư</span>
+                                <span>Chung cư</span>
                             </div>
                         </a>
                     </div>
@@ -72,13 +75,13 @@ session_start();
                         <a href="?category=4" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/business.jpg" class="quick-filter-item-icon">
-                                <span>Văn phòng kinh doanh</span>
+                                <span>Mặt bằng</span>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="arrange-wrapper" style='height: 60px'>
+            <div class="arrange-wrapper" style='height: 40px'>
             <select class='form-control province' id='select' style='width: 90px;' onchange="reloadPage(this)">
                 <option>Khu vực</option>
                 <?php
@@ -227,5 +230,8 @@ session_start();
             </div>
         </div>
     </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 </html>
