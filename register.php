@@ -47,15 +47,15 @@ if(isset($_POST['register'])) {
                 </div>
                 <div class='login-method'>
                     <button class='btn-wrapper'>
-                        <img src='facebookicon.jpg' class='btn-icon'/>
+                        <img src='img/facebook.jpg' class='btn-icon'/>
                         Facebook
                     </button>
                     <button class='btn-wrapper'>
-                        <img src='googleicon.jpg' class='btn-icon'/>
+                        <img src='img/google.jpg' class='btn-icon'/>
                         Google
                     </button>
                     <button class='btn-wrapper'>
-                        <img src='appleicon.jpg' class='btn-icon'/>
+                        <img src='img/apple.jpg' class='btn-icon'/>
                         Apple ID
                     </button>
                 </div>

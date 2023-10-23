@@ -92,7 +92,7 @@ if(isset($_POST['save'])) {
             ?>
             <div class="account">
                 <div class="account-top row">
-                    <img src="8.jpg" width="50px" height="50px">
+                    <img src="img/avatar.jpg" width="50px" height="50px">
                     <div class="account-info">
                         <?php
                         $id = $_GET['id'];

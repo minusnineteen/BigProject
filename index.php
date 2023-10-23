@@ -63,7 +63,7 @@ if($logout == 'logout') {
 <section id="slider">
     <div class="slider-show">
         <div class="slider">
-            <img src="1.webp" width="100%" alt="">
+            <img src="img/1.webp" width="100%" alt="">
             <!-- <img src="2.webp" width="100%" alt=""> -->
         </div>
         <!-- <div class="arrow">
@@ -81,19 +81,19 @@ if($logout == 'logout') {
 <section id="type">
     <div class="row">
         <div class="button col l-3">
-            <a href="list_purchase.php"><img src="3.png" width="100px" height="100px"></a>
+            <a href="list_purchase.php"><img src="img/3.png" width="100px" height="100px"></a>
             <h1>Mua Bán</h1>
         </div>
         <div class="button col l-3">
-            <a href="list_lease.php"><img src="4.webp" width="100px" height="100px"></a>
+            <a href="list_lease.php"><img src="img/4.webp" width="100px" height="100px"></a>
             <h1>Cho Thuê</h1>
         </div>
         <div class="button col l-3">
-            <a href="chart.php"><img src="5.png" width="100px" height="100px"></a>
+            <a href="chart.php"><img src="img/5.png" width="100px" height="100px"></a>
             <h1>Biểu Đồ</h1>
         </div>
         <div class="button col l-3">
-            <img src="6.webp" width="100px" height="100px">
+            <img src="img/6.webp" width="100px" height="100px">
             <h1>Vay Mua</h1>
         </div>
     </div>

@@ -1,4 +1,3 @@
-
 <?php
 ini_set('session.cookie_lifetime', 86400); // 86400 seconds (1 day)
 include_once('db/connect.php');
@@ -42,7 +41,7 @@ session_start();
                     <div class="quick-filter-content">
                         <a href="?category=2" class="quick-filter-link">
                             <div class="quick-filter-item">
-                                <img src="house.jpg" class="quick-filter-item-icon">
+                                <img src="img/house.jpg" class="quick-filter-item-icon">
                                 <span>Nhà ở</span>
                             </div>
                         </a>
@@ -52,7 +51,7 @@ session_start();
                     <div class="quick-filter-content">
                         <a href="?category=1" class="quick-filter-link">
                             <div class="quick-filter-item">
-                                <img src="land.jpg" class="quick-filter-item-icon">
+                                <img src="img/land.jpg" class="quick-filter-item-icon">
                                 <span>Đất</span>
                             </div>
                         </a>
@@ -62,7 +61,7 @@ session_start();
                     <div class="quick-filter-content">
                         <a href="?category=3" class="quick-filter-link">
                             <div class="quick-filter-item">
-                                <img src="realestate.jpg" class="quick-filter-item-icon">
+                                <img src="img/apartment.jpg" class="quick-filter-item-icon">
                                 <span>Căn hộ/Chung cư</span>
                             </div>
                         </a>
@@ -72,7 +71,7 @@ session_start();
                     <div class="quick-filter-content">
                         <a href="?category=4" class="quick-filter-link">
                             <div class="quick-filter-item">
-                                <img src="businesspremises.jpg" class="quick-filter-item-icon">
+                                <img src="img/business.jpg" class="quick-filter-item-icon">
                                 <span>Văn phòng kinh doanh</span>
                             </div>
                         </a>

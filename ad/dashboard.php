@@ -35,10 +35,6 @@ if(isset($_GET['del_post'])) {
 <head>
     <meta charset="UTF-8">
     <style>
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-        }
         table {
             border: 1px solid black;
             border-collapse: collapse;
@@ -57,10 +53,6 @@ if(isset($_GET['del_post'])) {
         .info1, .info2 {
             cursor: pointer;
         }
-        .top {
-            justify-content: space-evenly;
-            align-items: center;
-        }
     </style>
     <title>Chào Mừng</title>
 </head>
@@ -72,8 +64,7 @@ if(isset($_GET['del_post'])) {
         <a class="info1">Danh sách tài khoản</a></p>
     </div>
     <div class="post">
-        <div class="top row">
-            <h3>Danh sách tin đăng</h3>
+        <div class="top">
             <?php
             $search_term = '';
             if (isset($_GET['search_term'])) {
@@ -99,7 +90,8 @@ if(isset($_GET['del_post'])) {
                 <input type="submit" value="Search">
             </form>
         </div>
-        <p align="center">Có tất cả <?php echo $count_search_term ?> tin đăng</p>    
+        <h3>Danh sách tin đăng</h3>
+        <p>Có tất cả <?php echo $count_search_term ?> tin đăng</p>    
         <table class="post">
             <tr>
                 <th>STT</th>
@@ -138,8 +130,7 @@ if(isset($_GET['del_post'])) {
         </table>
     </div>
     <div class="user">
-        <div class="top row">
-            <h3>Danh sách tài khoản</h3>
+        <div class="top">
             <?php
             $search = '';
             if (isset($_GET['search'])) {
@@ -158,7 +149,8 @@ if(isset($_GET['del_post'])) {
                 <input type="submit" value="Search">
             </form>
         </div>
-        <p align="center">Có tất cả <?php echo $count_search ?> tài khoản</p>    
+        <h3>Danh sách tài khoản</h3>
+        <p>Có tất cả <?php echo $count_search ?> tài khoản</p>    
         <table>
             <tr>
                 <th>STT</th>

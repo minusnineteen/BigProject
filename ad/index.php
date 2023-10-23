@@ -17,7 +17,7 @@ if(isset($_POST['login_admin'])) {
             $_SESSION['login_admin'] = $row_admin['user'];
             header('Location: dashboard.php');
         } else {
-            echo '<p>Error!<p>';
+            echo '<p>Lỗi đăng nhập!<p>';
         }
     }
 }
@@ -32,9 +32,9 @@ if(isset($_POST['login_admin'])) {
     <h1 align="center">Đăng Nhập Admin</h1>
     <div class="from-group" align="center">
         <form action="" method="POST">
-            <label>Tài khoản</label><br>
+            <label>Tài khoản (ad)</label><br>
             <input type="text" name="user" placeholder="Nhập id" class="from-control"><br>
-            <label>Mật khẩu</label><br>
+            <label>Mật khẩu (123)</label><br>
             <input type="password" name="pass" placeholder="Nhập mật khẩu" class="from-control"><br>
             <input type="submit" name="login_admin" value="Đăng nhập admin">
         </form>
