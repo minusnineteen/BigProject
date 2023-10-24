@@ -27,6 +27,12 @@ session_start();
         <section class='chat-area'>
             <div class='header-chat-box'>
                 <?php
+                if(isset($_SESSION['id'])){
+                    $id = $_SESSION['id'];
+                } else {
+                    header("Location: http://localhost/land/login.php");
+                    exit; 
+                }
                 $sql_message = mysqli_query($con, "select * from tbl_account where phone_number = ".$_SESSION['id']);
                 $row_message = mysqli_fetch_array($sql_message);
                 $_SESSION['message_outgoing'] = $row_message['message_id'];
