@@ -4,7 +4,7 @@
 2. Sau khi cài đặt XAMPP, khởi động bằng cách mở thư mục cài đặt của XAMPP và nhấp đúp vào tệp xampp-control.exe.
 3. Để chạy các ứng dụng web và sử dụng cơ sở dữ liệu, cần khởi động Apache và MySQL. Nhấp vào nút Start lần lượt bên cạnh Apache và MySQL trong cửa sổ XAMPP Control Panel.
 4. Mở trình duyệt web và truy cập địa chỉ: http://localhost/phpmyadmin/
-5. Nhấp vào tab Import (Nhập) và chọn file đã tải xuống từ github 'land.sql' rồi nhấp vào nút Go.
+5. Nhấp vào tab Import (Nhập) và chọn file đã tải xuống từ github 'land.sql' (https://github.com/minusnineteen/BigProject/blob/main/land.sql) rồi nhấp vào nút Go.
 
 # Tài liệu tham khảo
 
@@ -13,3 +13,4 @@
 # Liên kết
 
 * [Trang web](http://localhost/land/)
+* [Cơ sở dữ liệu](https://github.com/minusnineteen/BigProject/blob/main/land.sql)
