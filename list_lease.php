@@ -1,7 +1,6 @@
 <?php
 ini_set('session.cookie_lifetime', 86400); // 86400 seconds (1 day)
 include_once('db/connect.php');
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,9 +10,13 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="grid.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Trang Chủ</title>
 </head>
+<?php
+session_start();
+?>
 <body>
     <?php
     include('incl/header.php');
@@ -42,7 +45,7 @@ session_start();
                         <a href="?category=2" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/house.jpg" class="quick-filter-item-icon">
-                                <span>Nhà ở</span>
+                                <span>Nhà</span>
                             </div>
                         </a>
                     </div>
@@ -62,7 +65,7 @@ session_start();
                         <a href="?category=3" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/apartment.jpg" class="quick-filter-item-icon">
-                                <span>Căn hộ/Chung cư</span>
+                                <span>Chung cư</span>
                             </div>
                         </a>
                     </div>
@@ -72,35 +75,35 @@ session_start();
                         <a href="?category=4" class="quick-filter-link">
                             <div class="quick-filter-item">
                                 <img src="img/business.jpg" class="quick-filter-item-icon">
-                                <span>Văn phòng kinh doanh</span>
+                                <span>Mặt bằng</span>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="arrange-wrapper">
-                <select class='form-control province' id='select' style='width: 90px;' onchange="reloadPage(this)">
-                    <option>Khu vực</option>
-                    <?php
-                        $sql_info = mysqli_query($con, "select * from tbl_area");
-                        $i = 1; 
-                        while($row_info = mysqli_fetch_array($sql_info)){
-                    ?>
-                        <option value="<?php echo $i; ?>"><?php echo $row_info['area_name']; ?></option>  
-                    <?php
-                        $i++;
-                        }
-                    ?>
-                </select>
-                <script>
-                function reloadPage(selectElement) {
-                    // Get the selected value from the <select>
-                    var selectedValue = selectElement.value;
-                    
-                    // Reload the page
-                    location.reload();
-                }
-                </script>
+            <div class="arrange-wrapper" style='height: 40px'>
+            <select class='form-control province' id='select' style='width: 90px;' onchange="reloadPage(this)">
+                <option>Khu vực</option>
+                <?php
+                    $sql_info = mysqli_query($con, "select * from tbl_area");
+                    $i = 1; 
+                    while($row_info = mysqli_fetch_array($sql_info)){
+                ?>
+                    <option value="<?php echo $i; ?>"><?php echo $row_info['area_name']; ?></option>  
+                <?php
+                    $i++;
+                    }
+                ?>
+            </select>
+            <script>
+            function reloadPage(selectElement) {
+                // Get the selected value from the <select>
+                var selectedValue = selectElement.value;
+                
+                // Reload the page
+                location.reload();
+            }
+            </script>
                 <a href="?filter=1">Dưới 2 tỷ</a>
                 <a href="?filter=2">2 tỷ - 4 tỷ</a>
                 <a href="?filter=3">4 tỷ - 10 tỷ</a>
@@ -143,8 +146,12 @@ session_start();
                         $orderByClause = " ORDER BY price DESC";
                     }
                     
-                    $area_id = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 1;
-                    $area = "and area_code = ".$area_id;
+                    $_SESSION['area_id'] = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 0;
+                    if($_SESSION['area_id'] == 0){
+                        $area = "";
+                    }else{
+                        $area = "and area_code = ".$_SESSION['area_id'];
+                    }
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
                     and business_code = 2 ".$area." and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
                     information_code asc limit ". $item_per_page ." offset ". $offset);                    
@@ -152,7 +159,8 @@ session_start();
                     ?>
                         <div class='save-row-wrapper'>
                             <div class="save-left">
-                                <a href="post.php?id=<?php echo $row_info['information_code'] ?>"><img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
+                                <a href="post.php?id=<?php echo $row_info['information_code'] ?>">
+                                <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
                             </div>
                             <div class="save-right">
                                 <div class="save-right-top">
@@ -219,6 +227,7 @@ session_start();
                         </div>
                     <?php
                     }
+                    $_SESSION['area_id'] = 0;
                     ?>
                     
                 </div>

@@ -83,7 +83,7 @@ session_start();
             </div>
             <div class="arrange-wrapper" style='height: 40px'>
             <select class='form-control province' id='select' style='width: 90px;' onchange="reloadPage(this)">
-                <option>Khu vực</option>
+                <option value="0">Khu vực</option>
                 <?php
                     $sql_info = mysqli_query($con, "select * from tbl_area");
                     $i = 1; 
@@ -145,9 +145,12 @@ session_start();
                     } elseif ($arrange == 2) {
                         $orderByClause = " ORDER BY price DESC";
                     }
-                    
-                    $area_id = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 1;
-                    $area = "and area_code = ".$area_id;
+                    $_SESSION['area_id'] = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 0;
+                    if($_SESSION['area_id'] == 0){
+                        $area = "";
+                    }else{
+                        $area = "and area_code = ".$_SESSION['area_id'];
+                    }                    
                     $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
                     and business_code = 1 ".$area." and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
                     information_code asc limit ". $item_per_page ." offset ". $offset);                    
@@ -223,6 +226,7 @@ session_start();
                         </div>
                     <?php
                     }
+                    $_SESSION['area_id'] = 0;
                     ?>
                     
                 </div>

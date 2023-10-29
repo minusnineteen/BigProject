@@ -49,10 +49,17 @@ if(isset($_POST['del'])) {
             </div>
             <div class="save-right-bottom row">
                 <form method="POST">
-                    <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>"
-                    class="edit-link">Sửa</a>
-                    <input type="hidden" name="information_code" value="<?php echo $row_info['information_code'] ?>">
-                    <input type="submit" name="del" value="Xóa">
+                    <?php
+                    if($_SESSION['id'] == $_GET['phone_number'])
+                    {
+                    ?>
+                        <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>"
+                        class="edit-link">Sửa</a>
+                        <input type="hidden" name="information_code" value="<?php echo $row_info['information_code'] ?>">
+                        <input type="submit" name="del" value="Xóa">
+                    <?php
+                    }
+                    ?>
                     <i class='bx bx-heart'></i>
                 </form>
             </div>
