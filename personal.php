@@ -33,8 +33,12 @@ if(isset($_POST['del'])) {
     ?>
 <section id="save">
     <?php
-    $phone_number = isset($_GET['phone_number']) ? $_GET['phone_number'] : $_SESSION['id'];
-    $sql_info = mysqli_query($con, "select * from tbl_information where phone_number = " .$phone_number);
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
+    $offset = ($current_page - 1) * $item_per_page;
+    $id = isset($_GET['phone_number']) ? $_GET['phone_number'] : $_SESSION['id'];
+    $sql_info = mysqli_query($con, "select * from tbl_information where phone_number = " .$id. 
+    " limit ". $item_per_page ." offset ". $offset);
     while($row_info = mysqli_fetch_array($sql_info)) {
     ?>
     <div class='save row'>
@@ -68,6 +72,56 @@ if(isset($_POST['del'])) {
     <?php 
     }
     ?>
+    <div class='paging-container'>
+        <div class='paging-wrapper'>
+            <?php
+                
+                if($current_page != 1)
+                {
+                ?>
+                    <div class='paging-item'>
+                    <a href="?phone_number=<?php echo $id?>&per_page=10&page=<?php echo ($current_page > 1) ? ($current_page - 1) : 1; ?>" class='paging-text'>
+                        <i class='bx bx-chevron-left'></i>
+                    </a>
+                    </div>
+                    <?php
+                }
+                ?>
+                    
+                <?php
+                $phone_number = isset($_GET['phone_number']) ? $_GET['phone_number'] : null;
+                $sql_info = mysqli_query($con, "select count(*) AS total_rows from tbl_information where phone_number = " .$phone_number);
+                $row = mysqli_fetch_assoc($sql_info);
+                $total_rows = $row['total_rows'];
+                $page_number = $total_rows/10;
+                if($total_rows % 10 != 0){
+                    $page_number += 1;
+                }
+                $i = 1;
+                while($i <= $page_number) {
+                    
+                ?>
+                <div class='paging-item'><a href="?phone_number=<?php echo $id?>&per_page=10&page=<?php echo $i; ?>" class='paging-text'><?php echo $i ?></a></div>
+                <?php
+                $i++;
+                }
+                ?>
+                <?php
+                if($current_page < ($page_number - 1))
+                {
+                ?>
+                    <div class='paging-item'>
+                        <a href="?phone_number=<?php echo $id?>&per_page=10&page=<?php echo ($current_page < $page_number) ? ($current_page + 1) : $current_page; ?>" class='paging-text'>
+                            <i class='bx bx-chevron-right'></i>
+                        </a>
+                    </div>
+                <?php
+                }
+                $_SESSION['area_id'] = 0;
+                ?>            
+            </div>
+        </div>
+    </div>
 </section>
     <?php
     include('incl/footer.php');

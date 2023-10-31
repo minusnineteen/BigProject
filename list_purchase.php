@@ -12,7 +12,7 @@ include_once('db/connect.php');
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Trang Chủ</title>
+    <title>Mua bán</title>
 </head>
 <?php
 session_start();

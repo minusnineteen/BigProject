@@ -18,7 +18,7 @@ inputField.onkeyup = () =>{
 }
 sentbtn.onclick = () => {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", 'insert-chat.php', true);
+    xhr.open("POST", 'insert_chat.php', true);
     xhr.onload = () => {
         if((xhr.readyState === XMLHttpRequest.DONE) && (xhr.status === 200)){
             inputField.value = "";

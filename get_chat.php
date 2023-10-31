@@ -1,6 +1,6 @@
 <?php
 include_once('db/connect.php');
-include_once "MessageController.php";
+include_once "message_controller.php";
 
 $chat = new MessageController();
 
