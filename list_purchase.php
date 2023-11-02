@@ -109,7 +109,8 @@ session_start();
                 <a href="?filter=3">4 tỷ - 10 tỷ</a>
                 <a href="?filter=4">Trên 10 tỷ</a>
                 <?php
-                    $filter = isset($_GET['filter']) ? $_GET['filter'] : 1;
+                    $filter = isset($_GET['filter']) ? $_GET['filter'] : null;
+                    
                 ?>
                 <a href="?filter=<?php echo $filter; ?>&arrange=1">Tăng dần</a>
                 <a href="?filter=<?php echo $filter; ?>&arrange=2">Giảm dần</a>
@@ -120,9 +121,9 @@ session_start();
                     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    $filter = isset($_GET['filter']) ? $_GET['filter'] : 5;
-                    $arrange = isset($_GET['arrange']) ? $_GET['arrange'] : 1;
+                    $arrange = isset($_GET['arrange']) ? $_GET['arrange'] : null;
                     $category = isset($_GET['category']) ? $_GET['category'] : 1;
+                    $category_query = " and category_code = " .$category;
                     $_SESSION['filter'] = $filter;
                     $value_left = 0.0;
                     $value_right = 10000.0;
@@ -136,24 +137,24 @@ session_start();
                         $value_left = 4.0;
                         $value_right = 10.0;
                     }
-                    else if($filter == 4){
-                        $value_left = 10.0;
-                        $value_right = 999999.0;
-                    }
                     if ($arrange == 1) {
-                        $orderByClause = " ORDER BY price ASC";
-                    } elseif ($arrange == 2) {
-                        $orderByClause = " ORDER BY price DESC";
+                        $orderByClause = " price ASC ,";
+                    } else if ($arrange == 2) {
+                        $orderByClause = " price DESC ,";
+                    }else{
+                        $orderByClause = "";
                     }
+                    
                     $_SESSION['area_id'] = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 0;
                     if($_SESSION['area_id'] == 0){
                         $area = "";
                     }else{
-                        $area = "and area_code = ".$_SESSION['area_id'];
-                    }                    
-                    $sql_info = mysqli_query($con, "select * from tbl_information where category_code = ". $category ."
-                    and business_code = 1 ".$area." and price > ".$value_left." and price <= ".$value_right." ".$orderByClause." ,
-                    information_code asc limit ". $item_per_page ." offset ". $offset);                    
+                        $area = " and area_code = ".$_SESSION['area_id'];
+                    }         
+
+                    $sql_info = mysqli_query($con, "select * from tbl_information where business_code = 1 ". $category_query ." 
+                    ".$area." and price > ".$value_left." and price <= ".$value_right." order by ".$orderByClause."
+                    information_code DESC limit ". $item_per_page ." offset ". $offset);                    
                         while($row_info = mysqli_fetch_array($sql_info)) {
                     ?>
                         <div class='save-row-wrapper'>
@@ -195,9 +196,8 @@ session_start();
                     
                     <?php
                     
-                    $category = isset($_GET['category']) ? $_GET['category'] : 1;
                     $sql_info = mysqli_query($con, "select count(*) AS total_rows from tbl_information
-                    where category_code = ".$category." ".$area." and business_code = 1 and price > ".$value_left."
+                    where business_code = 1 ".$category_query." ".$area." and price > ".$value_left."
                     and price <= ".$value_right);
                     $row = mysqli_fetch_assoc($sql_info);
                     $total_rows = $row['total_rows'];
@@ -226,7 +226,6 @@ session_start();
                         </div>
                     <?php
                     }
-                    $_SESSION['area_id'] = 0;
                     ?>
                     
                 </div>
