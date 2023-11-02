@@ -16,7 +16,6 @@ if(isset($_POST['edit'])) {
     $acreage = $_POST['acreage'];
     $length = $_POST['length'];
     $width = $_POST['width'];
-    $room = $_POST['room'];
     $description = $_POST['description'];
     $path = 'up/';
     $sql_insert_post = mysqli_query($con, "UPDATE `tbl_information` SET 
@@ -29,12 +28,12 @@ if(isset($_POST['edit'])) {
     `acreage` = '$acreage',
     `width` = '$width',
     `length` = '$length',
-    `room` = '$room',
     `date_time` = DATE_FORMAT(NOW(), '%Y-%m'),
     `description` = '$description',
     `area_code` = '$area' 
     WHERE `information_code` = '$information_code'");
-    move_uploaded_file($img_tmp, $path.$img);    
+    move_uploaded_file($img_tmp, $path.$img);   
+    header("Location: personal.php?phone_number=".$_SESSION['id']); 
 }
 ?>
 <!DOCTYPE html>
