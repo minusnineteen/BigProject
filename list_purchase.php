@@ -16,6 +16,7 @@ include_once('db/connect.php');
 </head>
 <?php
 session_start();
+
 ?>
 <body>
     <?php
@@ -104,16 +105,15 @@ session_start();
                 location.reload();
             }
             </script>
-                <a href="?filter=1">Dưới 2 tỷ</a>
-                <a href="?filter=2">2 tỷ - 4 tỷ</a>
-                <a href="?filter=3">4 tỷ - 10 tỷ</a>
-                <a href="?filter=4">Trên 10 tỷ</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=1&arrange=<?php echo $_SESSION['arrange'] ?>">Dưới 2 tỷ</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=2&arrange=<?php echo $_SESSION['arrange'] ?>">2 tỷ - 4 tỷ</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=3&arrange=<?php echo $_SESSION['arrange'] ?>">4 tỷ - 10 tỷ</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=4&arrange=<?php echo $_SESSION['arrange'] ?>">Trên 10 tỷ</a>
                 <?php
                     $filter = isset($_GET['filter']) ? $_GET['filter'] : null;
-                    
                 ?>
-                <a href="?filter=<?php echo $filter; ?>&arrange=1">Tăng dần</a>
-                <a href="?filter=<?php echo $filter; ?>&arrange=2">Giảm dần</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=<?php echo $filter; ?>&arrange=1">Tăng dần</a>
+                <a href="?category=<?php echo $_SESSION['category'] ?>&filter=<?php echo $filter; ?>&arrange=2">Giảm dần</a>
             </div>
             <div class="save-wrapper">
                 <div>
@@ -121,37 +121,44 @@ session_start();
                     $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
                     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    $arrange = isset($_GET['arrange']) ? $_GET['arrange'] : null;
-                    $category = isset($_GET['category']) ? $_GET['category'] : 1;
-                    $category_query = " and category_code = " .$category;
+                    $_SESSION['arrange'] = isset($_GET['arrange']) ? $_GET['arrange'] : null;
+                    $_SESSION['category'] = isset($_GET['category']) ? $_GET['category'] : 0;
+                    $area_id = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 0;
                     $_SESSION['filter'] = $filter;
                     $value_left = 0.0;
                     $value_right = 10000.0;
-                    if($filter == 1){
+                    if($_SESSION['filter'] == 1){
                         $value_right = 2.0;
-                    } else if($filter == 2){
+                    } else if($_SESSION['filter'] == 2){
                         $value_left = 2.0;
                         $value_right = 4.0;
                     }
-                    else if($filter == 3){
+                    else if($_SESSION['filter'] == 3){
                         $value_left = 4.0;
                         $value_right = 10.0;
                     }
-                    if ($arrange == 1) {
+                    if ($_SESSION['arrange'] == 1) {
                         $orderByClause = " price ASC ,";
-                    } else if ($arrange == 2) {
+                    } else if ($_SESSION['arrange'] == 2) {
                         $orderByClause = " price DESC ,";
                     }else{
                         $orderByClause = "";
                     }
-                    
-                    $_SESSION['area_id'] = isset($_SESSION['area_id']) ? $_SESSION['area_id'] : 0;
-                    if($_SESSION['area_id'] == 0){
+                    if($_SESSION['category'] == 0){
+                        $category_query = "";
+                    }else{
+                        $category_query = " and category_code = " .$_SESSION['category'];
+                    }
+                    if($area_id == 0){
                         $area = "";
                     }else{
-                        $area = " and area_code = ".$_SESSION['area_id'];
+                        $area = " and area_code = ".$area_id;
                     }         
-
+                    var_dump($area);
+                    var_dump($orderByClause);
+                    var_dump($category_query);
+                    var_dump($value_left);
+                    var_dump($value_right);
                     $sql_info = mysqli_query($con, "select * from tbl_information where business_code = 1 ". $category_query ." 
                     ".$area." and price > ".$value_left." and price <= ".$value_right." order by ".$orderByClause."
                     information_code DESC limit ". $item_per_page ." offset ". $offset);                    
@@ -210,7 +217,7 @@ session_start();
                         
                     ?>
                     <div class='paging-item'><a href="?per_page=10&page=<?php echo $i; ?>
-                    &filter=<?php echo $filter; ?>&arrange=<?php echo $arrange; ?>" class='paging-text'><?php echo $i ?></a></div>
+                    &filter=<?php echo $filter; ?>&arrange=<?php echo $_SESSION['arrange']; ?>" class='paging-text'><?php echo $i ?></a></div>
                     <?php
                     $i++;
                     }
@@ -226,8 +233,7 @@ session_start();
                         </div>
                     <?php
                     }
-                    ?>
-                    
+                    ?>                    
                 </div>
                 </div>
             </div>
@@ -235,6 +241,8 @@ session_start();
     </section>
     <?php
     include('incl/footer.php');
+    $_SESSION['area_id'] = 0;
+                    
     ?>
 </body>
 </html>
