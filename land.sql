@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 02, 2023 lúc 04:06 PM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.0.28
+-- Thời gian đã tạo: Th10 03, 2023 lúc 05:11 PM
+-- Phiên bản máy phục vụ: 10.4.27-MariaDB
+-- Phiên bản PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,11 +39,10 @@ CREATE TABLE `tbl_account` (
 --
 
 INSERT INTO `tbl_account` (`phone_number`, `password`, `name`, `message_id`) VALUES
-(1, '123', 'min', 63052),
 (373475903, '123', 'Sunshine', 44857),
 (522452021, '123', 'Rebel', 35130),
 (768614693, '123', 'Sweetie', 41078),
-(902514989, '123', 'Sparky', 1),
+(902514989, '123', 'Sparky', 63052),
 (904789542, '123', 'Buddy', 76767),
 (913756723, '123', 'Ace', 83836),
 (937930354, '123', 'Rockstar', 88880),
@@ -143,6 +142,13 @@ CREATE TABLE `tbl_favorite` (
   `information_code` int(11) NOT NULL,
   `phone_number` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_favorite`
+--
+
+INSERT INTO `tbl_favorite` (`favorite_code`, `information_code`, `phone_number`) VALUES
+(1, 200, 373475903);
 
 -- --------------------------------------------------------
 
@@ -498,24 +504,7 @@ CREATE TABLE `tbl_message` (
 --
 
 INSERT INTO `tbl_message` (`incoming_msg_id`, `outgoing_msg_id`, `msg`, `message_id`) VALUES
-(44857, 35130, 'hi', 3),
-(44857, 35130, 'hello', 4),
-(44857, 35130, 'hi', 5),
-(35130, 44857, 'hello', 6),
-(35130, 44857, 'chào bạn', 7),
-(44857, 35130, 'abc', 8),
-(44857, 35130, 'đâsd', 9),
-(44857, 35130, 'fasdfad', 10),
-(44857, 35130, 'ádasd', 11),
-(44857, 35130, 'abc', 12),
-(44857, 35130, 'đá', 13),
-(44857, 35130, 'đâsd', 14),
-(44857, 35130, 'qưeqwe', 15),
-(44857, 35130, 'fsdfsdf', 16),
-(44857, 35130, 'sdfsdf', 17),
-(44857, 35130, 'fsdfasdf', 18),
-(88880, 35130, 'asdasd', 19),
-(35130, 44857, 'cc', 20);
+(83836, 44857, 'ym', 21);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -592,7 +581,7 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT cho bảng `tbl_favorite`
 --
 ALTER TABLE `tbl_favorite`
-  MODIFY `favorite_code` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `favorite_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_information`
@@ -604,7 +593,7 @@ ALTER TABLE `tbl_information`
 -- AUTO_INCREMENT cho bảng `tbl_message`
 --
 ALTER TABLE `tbl_message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
