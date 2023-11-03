@@ -212,7 +212,9 @@ session_start();
                         
                     ?>
                     <div class='paging-item'><a href="?per_page=10&page=<?php echo $i; ?>
-                    &filter=<?php echo $filter; ?>&arrange=<?php echo $_SESSION['arrange']; ?>" class='paging-text'><?php echo $i ?></a></div>
+                    &filter=<?php echo $filter; ?>&arrange=<?php echo $_SESSION['arrange']; ?>
+                    &category=<?php echo $_SESSION['category'] ?>"
+                    class='paging-text'><?php echo $i ?></a></div>
                     <?php
                     $i++;
                     }
