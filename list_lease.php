@@ -154,11 +154,6 @@ session_start();
                     }else{
                         $area = " and area_code = ".$area_id;
                     }         
-                    var_dump($area);
-                    var_dump($orderByClause);
-                    var_dump($category_query);
-                    var_dump($value_left);
-                    var_dump($value_right);
                     $sql_info = mysqli_query($con, "select * from tbl_information where business_code = 2 ". $category_query ." 
                     ".$area." and price > ".$value_left." and price <= ".$value_right." order by ".$orderByClause."
                     information_code DESC limit ". $item_per_page ." offset ". $offset);                    
