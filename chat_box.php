@@ -1,7 +1,6 @@
 <?php
 include_once('db/connect.php');
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,40 +17,40 @@ session_start();
 </head>
 <script>
     function goBack() {
-    window.history.back();
+        window.history.back();
     }
 </script>
 <body class="chat-box">
-
     <div class='chat-box-wrapper'>
         <section class='chat-area'>
             <div class='header-chat-box'>
                 <?php
-                if(isset($_SESSION['id'])){
+                if (isset($_SESSION['id'])) {
                     $id = $_SESSION['id'];
                 } else {
                     header("Location: http://localhost/land/login.php");
-                    exit; 
+                    exit;
                 }
-                $sql_message = mysqli_query($con, "select * from tbl_account where phone_number = ".$_SESSION['id']);
+                $sql_message = mysqli_query($con, "select * from tbl_account where phone_number = " . $_SESSION['id']);
                 $row_message = mysqli_fetch_array($sql_message);
                 $_SESSION['message_outgoing'] = $row_message['message_id'];
                 $_SESSION['phone_number'] = isset($_GET['phone_number']) ? $_GET['phone_number'] : $_SESSION['phone_number'];
-                $sql = mysqli_query($con, "select * from tbl_account where phone_number = ".$_SESSION['phone_number']);
+                $sql = mysqli_query($con, "select * from tbl_account where phone_number = " . $_SESSION['phone_number']);
                 $row = mysqli_fetch_array($sql);
                 $_SESSION['message_id'] = $row['message_id'];
                 ?>
                 <a href="#" onclick="goBack();"><i class='bx bx-arrow-back'></i></a>
-                <a href="personal.php?phone_number=<?php echo $_SESSION['phone_number']?>" class='name-tag'><?php echo $row['name']?></a>
-                
-                
+                <a href="personal.php?phone_number=<?php echo $_SESSION['phone_number'] ?>" class='name-tag'>
+                    <?php echo $row['name'] ?>
+                </a>
             </div>
             <div class='chat-content'>
-                
             </div>
             <form action="#" class='typing-area'>
-                <input type="text" name='incoming_id' class='incoming_id' value='<?php echo $_SESSION['message_id']?>' id='' hidden>
-                <input type="text" name='message' class='input-field' placeholder='Nhập nội dung ở đây...' autocomplete='off'>
+                <input type="text" name='incoming_id' class='incoming_id' value='<?php echo $_SESSION['message_id'] ?>'
+                    id='' hidden>
+                <input type="text" name='message' class='input-field' placeholder='Nhập nội dung ở đây...'
+                    autocomplete='off'>
                 <button class='send-btn'>
                     <i class='bx bxl-telegram'></i>
                 </button>
