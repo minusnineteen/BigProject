@@ -118,7 +118,7 @@ header.sticky {
 }
 
 #type {
-    padding: 5% 10% 5% 10%;
+    padding: 2% 10%;
 }
 
 .button {
@@ -126,8 +126,9 @@ header.sticky {
     text-align: center;
 }
 
-.button img {
-    border-radius: 50%;
+.button img:hover {
+    opacity: 0.8;
+    transform: scale(1.01);
 }
 
 .button h1 {
@@ -137,8 +138,9 @@ header.sticky {
 
 #sell,
 #rent,
+#chart,
 #hot {
-    padding: 5% 10% 0;
+    padding: 2% 10% 2%;
 }
 
 .sell-top,
@@ -147,10 +149,30 @@ header.sticky {
     padding-bottom: 10px;
 }
 
+.sell-top p,
+.rent-top p,
+.chart-left p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .item {
     align-items: center;
     justify-content: center;
     /* border: 1px solid #ccc; */
+}
+
+.item h1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item p:last-child {
+    color: red;
+}
+ 
+.item img {
     border-radius: 5%;
 }
 
@@ -160,6 +182,32 @@ header.sticky {
     text-align: center;
     padding: 10px 0;
 }
+
+.sell-bottom a,
+.rent-bottom a {
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.sell-bottom a:hover,
+.rent-bottom a:hover {
+    color: white;
+    background-color: black;
+}
+
+/* .chart-left {
+    position: absolute;
+    left: 0;
+    padding-left: 10%;
+} */
+
+/* .chart-right {
+    position: absolute;
+    right: 0;
+    padding-right: 10%;
+} */
 
 footer {
     /* margin-top: 5%; */
@@ -201,6 +249,7 @@ footer {
     aspect-ratio: 1/1;
     overflow: hidden;
 } */
+
 .post-small img {
     margin: 10px 10px;
 }
@@ -350,7 +399,6 @@ footer {
     width: 10%;
 }
 
-/* nky */
 .list-container {
     background-color: #f4f4f4;
 }
@@ -477,7 +525,6 @@ footer {
     margin-left: 2px;
 }
 
-/* login */
 .login-layout {
     margin: 0;
     padding: 0;
@@ -607,9 +654,6 @@ footer {
     margin-left: 4px;
 }
 
-/* register */
-
-/* chat */
 .chat-box {
     display: flex;
     justify-content: center;

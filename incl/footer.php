@@ -1,4 +1,7 @@
 <footer>
+    <!-- <div class="backtop">
+        <i class='bx bx-chevron-up'></i>
+    </div> -->
     <div class="contact">
         <div class="footer-left">
             <img src="" alt="Logo"/>

@@ -31,14 +31,15 @@ if($logout == 'logout') {
     ?>
     <div style='margin: 100px 30px 10px; height: 25px;'>
         <select class='form-control province' id='select' style='height: 25px;'>
+            <option value="0">---Chọn khu vực---</option>
             <?php
             $sql_info = mysqli_query($con, "select * from tbl_area");
             $i = 1;
             while ($row_info = mysqli_fetch_array($sql_info)) {
             ?>
-                <option value="<?php echo $i; ?>">
+            <option value="<?php echo $i; ?>">
                 <?php echo $row_info['area_name']; ?>
-                </option>
+            </option>
             <?php
             $i++;
             }
