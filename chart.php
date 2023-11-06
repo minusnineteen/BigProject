@@ -31,7 +31,7 @@ if($logout == 'logout') {
     ?>
     <div style='margin: 100px 30px 10px; height: 25px;'>
         <select class='form-control province' id='select' style='height: 25px;'>
-            <option value="0">---Chọn khu vực---</option>
+            <!-- <option value="0">---Chọn khu vực---</option> -->
             <?php
             $sql_info = mysqli_query($con, "select * from tbl_area");
             $i = 1;
@@ -41,7 +41,7 @@ if($logout == 'logout') {
                 <?php echo $row_info['area_name']; ?>
             </option>
             <?php
-            $i++;
+                $i++;
             }
             ?>
         </select>
@@ -52,6 +52,18 @@ if($logout == 'logout') {
     <script type="text/javascript">
         $(document).ready(function() {
             var chartData;
+            var area_code = 1; // Giá trị mặc định
+            $.ajax({
+                type: 'POST',
+                url: 'get_chart_data.php',
+                data: {
+                    select_national: area_code
+                },
+                success: function(data) {
+                    chartData = JSON.parse(data);
+                    char.setData(chartData);
+                }
+            });
             $(".province").change(function() {
                 var area_code = $(".province").val();
                 $.ajax({
@@ -73,11 +85,11 @@ if($logout == 'logout') {
                 xkey: 'year',
                 ykeys: ['value'],
                 labels: ['Giá'],
-                parseTime: false, // Tắt tự động định dạng thời gian
-                xLabelAngle: 0, // Đặt góc xoay về 0 độ (ngang)
+                parseTime: false,
+                xLabelAngle: 0,
                 padding: 60,
                 hoverCallback: function(index, options, content, row) {
-                    var formattedValue = '<span style="font-size: 16px;">Giá: ' + row.value + ' Tỷ</span>'; // Đặt font-size ở đây
+                    var formattedValue = '<span style="font-size: 16px;">Giá: ' + row.value + ' Tỷ</span>';
                     return formattedValue;
                 },
             });
