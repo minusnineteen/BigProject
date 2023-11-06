@@ -4,9 +4,9 @@
     </div> -->
     <div class="contact">
         <div class="footer-left">
-            <img src="" alt="Logo"/>
-            <h1>TÊN CÔNG TY</h1>
-            <p>Địa Chỉ<br>
+            <img src="logo.png" alt="Logo" width="100px">
+            <h1>REAL ESTATE</h1>
+            <p>Ho Chi Minh City<br>
             (024) 1234 1234</p>
         </div>
         <div class="footer-right">
