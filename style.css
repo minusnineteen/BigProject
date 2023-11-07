@@ -260,7 +260,8 @@ footer {
 }
 
 #post {
-    padding: 0 5%;
+    padding: 0 10%;
+    margin-top: 100px;
 }
 
 .post-left {
@@ -311,6 +312,19 @@ footer {
     font-size: 14px;
 }
 
+.post-price-right {
+    display: flex;
+    width: 20%;
+}
+
+.post-price-right i {
+    font-size: 20px;
+}
+
+.post-price-right input {
+    margin-left: 10px;
+}
+
 .post-info {
     display: flex;
     padding-top: 10px;
@@ -340,6 +354,7 @@ footer {
 
 .account-info p {
     font-weight: bold;
+    font-style: normal;
 }
 
 .account-info a {
@@ -377,7 +392,12 @@ footer {
 }
 
 #save {
-    margin: 5% 30% 0;
+    background-color: #f4f4f4;
+}
+
+.bg {
+    margin: 100px 350px 0 400px;
+    padding-bottom: 500px;
 }
 
 .save {
@@ -409,17 +429,18 @@ footer {
 
 .save-right-bottom {
     display: flex;
-    padding-top: 25px;
+    padding-top: 15px;
 }
 
 .save-right-bottom p {
-    width: 90%;
+    width: 85%;
     font-size: 14px;
 }
 
 .save-right-bottom i {
     width: 10%;
     font-size: 20px;
+    margin-right: 10px;
 }
 
 .list-container {
@@ -500,7 +521,7 @@ footer {
 
 .paging-wrapper {
     display: flex;
-    margin: 1px 0;
+    /* margin: 1px 0; */
     justify-content: center;
     padding: 12px 0;
     flex-wrap: wrap;

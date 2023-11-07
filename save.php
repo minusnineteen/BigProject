@@ -20,43 +20,48 @@ if(isset($_POST['del'])) {
     <title>Lưu Tin</title>
 </head>
 <body>
-<style>
-    body {
-        background-color: #f4f4f4;
-    }
-</style>
-<section id="save">
-    <h1>Tin Đã Lưu</h1>
-    <div class="save row">
-        <?php
-        $number = $_SESSION['id'];
-        $sql_info = mysqli_query($con, "select * from tbl_information inner join tbl_favorite on tbl_information.information_code = tbl_favorite.information_code");
-        while($row_info = mysqli_fetch_array($sql_info)) {
-            if($row_info['phone_number'] == $number) {
-        ?>
-        <div class="save-left">
-            <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px">
-        </div>
-        <div class="save-right">
-            <div class="save-right-top">
-                <p><?php echo $row_info['title'] ?></p>
-                <p><?php echo $row_info['acreage'] ?> m<sup>2</sup> - <?php echo $row_info['room'] ?> phòng</p>
-                <p><?php echo $row_info['price'] ?> tỷ</p>
+    <?php
+    include('incl/header.php');
+    ?>
+    <section id="save">
+        <div class="bg">
+            <div class="save row">
+                <?php
+                $number = $_SESSION['id'];
+                $sql_info = mysqli_query($con, "select * from tbl_information 
+                    inner join tbl_account on tbl_information.phone_number = tbl_account.phone_number
+                    inner join tbl_favorite on tbl_information.information_code = tbl_favorite.information_code");
+                while($row_info = mysqli_fetch_array($sql_info)) {
+                    if($row_info['phone_number'] == $number) {
+                ?>
+                <div class="save-left">
+                    <a href="post.php?id=<?php echo $row_info['information_code'] ?>">
+                        <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px">
+                    </a>
+                </div>
+                <div class="save-right">
+                    <div class="save-right-top">
+                        <p><?php echo $row_info['title'] ?></p>
+                        <p><?php echo $row_info['acreage'] ?> m<sup>2</sup> - <?php echo $row_info['room'] ?> phòng</p>
+                        <p><?php echo $row_info['price'] ?> tỷ</p>
+                    </div>
+                    <div class="save-right-bottom">
+                        <p><?php echo $row_info['name'] ?></p>
+                        <form method="POST">
+                            <input type="hidden" name="id" value="<?php echo $row_info['favorite_code'] ?>">
+                            <input type="submit" name="del" value="Bỏ Lưu">
+                        </form>
+                    </div>
+                </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
-            <div class="save-right-bottom">
-                <p></p>
-                <i class='bx bxs-heart'></i>
-                <form method="POST">
-                    <input type="submit" name="del" value="Xóa">
-                    <input type="hidden" name="id" value="<?php echo $row_info['favorite_code'] ?>">
-                </form>
-            </div>
         </div>
-        <?php
-            }
-        }
-        ?>
-    </div>
-</section>
+    </section>
+    <?php
+    include('incl/footer.php');
+    ?>
 </body>
 </html>

@@ -182,7 +182,8 @@ if(isset($_POST['save'])) {
                         <div class='save-row-wrapper'>
                             <div class="save-left">
                                 <a href="post.php?id=<?php echo $row_info['information_code'] ?>">
-                                <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px"></a>
+                                    <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px">
+                                </a>
                             </div>
                             <div class="save-right">
                                 <div class="save-right-top">
