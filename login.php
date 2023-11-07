@@ -17,7 +17,7 @@ if(isset($_POST['login'])) {
             $_SESSION['id'] = $row_login['phone_number'];
             header('Location: index.php');
         } else {
-            echo '<p>Lỗi!<p>';
+            echo '<p>Lỗi đăng nhập!<p>';
         }
     }
 }

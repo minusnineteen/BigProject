@@ -409,7 +409,7 @@ footer {
 
 .save-right-bottom {
     display: flex;
-    padding-top: 20px;
+    padding-top: 25px;
 }
 
 .save-right-bottom p {
@@ -419,6 +419,7 @@ footer {
 
 .save-right-bottom i {
     width: 10%;
+    font-size: 20px;
 }
 
 .list-container {

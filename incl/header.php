@@ -1,3 +1,15 @@
+<?php
+// session_start();
+// if(isset($_GET['status'])) {
+//     $logout = $_GET['status'];
+// } else {
+//     $logout = '';
+// }
+// if($logout == 'logout') {
+//     unset($_SESSION['login']);
+//     header('Location: index.php');
+// }
+?>
 <header>
     <div class="logo">
     	<a href="index.php"><img src="logo.png" alt="Logo" width="100px"></a>
