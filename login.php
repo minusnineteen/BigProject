@@ -7,7 +7,11 @@ if(isset($_POST['login'])) {
     $number = $_POST['number'];
     $password = $_POST['password'];
     if($number == '' || $password == '') {
-        echo '<p>Nhập đầy đủ!<p>';
+        echo '<script>
+            if(confirm("Nhập đầy đủ!")) {
+                window.location.href = "login.php";
+            }
+            </script>';
     } else {
         $sql_login = mysqli_query($con, "select * from tbl_account where phone_number = '$number' and password = '$password' limit 1");
         $count = mysqli_num_rows($sql_login);
@@ -17,7 +21,7 @@ if(isset($_POST['login'])) {
             $_SESSION['id'] = $row_login['phone_number'];
             header('Location: index.php');
         } else {
-            echo '<p>Lỗi đăng nhập!<p>';
+            echo '<script>alert("Lỗi đăng nhập!");</script>';
         }
     }
 }
@@ -45,7 +49,7 @@ if(isset($_POST['login'])) {
                         <div class='inner'>
                             <input type="password" name="password" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
-                        <a class='forgot-password'>Quên mật khẩu?</a>
+                        <a href="#" class='forgot-password'>Quên mật khẩu?</a>
                         <input type="submit" name="login" class='btn-login' value="ĐĂNG NHẬP">
                     </form>
                 </div>
@@ -70,7 +74,7 @@ if(isset($_POST['login'])) {
                 </div>
                 <div class='footer'>
                     Chưa có tài khoản?
-                    <a class='register-option'>Đăng ký tài khoản mới</a>
+                    <a href="register.php" class='register-option'>Đăng ký tài khoản mới</a>
                 </div>
             </div>
         </div>

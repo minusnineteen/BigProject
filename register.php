@@ -4,9 +4,17 @@ include_once('db/connect.php');
 <?php
 if(isset($_POST['register'])) {
     $number = $_POST['number'];
-    $pass = $_POST['pass'];
+    $password = $_POST['password'];
     $name = $_POST['name'];
-    $sql_register = mysqli_query($con, "insert into tbl_account(phone_number, password, name) values('$number', '$pass', '$name')");
+    if($number == '' || $password == '' || $name == '') {
+        echo '<script>
+            if(confirm("Nhập đầy đủ!")) {
+                window.location.href = "register.php";
+            }
+            </script>';
+    } else {
+        $sql_register = mysqli_query($con, "insert into tbl_account(phone_number, password, name) values('$number', '$password', '$name')");
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -33,9 +41,8 @@ if(isset($_POST['register'])) {
                             <input type="text" name="number" class='input-login' placeholder='Số điện thoại'></input>
                         </div>
                         <div class='inner'>
-                            <input type="password" name="pass" class='input-login' placeholder='Mật khẩu'></input>
+                            <input type="password" name="password" class='input-login' placeholder='Mật khẩu'></input>
                         </div>
-                        <!-- <a class='forgot-password'>Quên mật khẩu?</a> -->
                         <input type="submit" name="register" class='btn-login' value="ĐĂNG KÝ">
                     </form>
                 </div>
@@ -59,8 +66,8 @@ if(isset($_POST['register'])) {
                     </button>
                 </div>
                 <div class='footer'>
-                    Chưa có tài khoản?
-                    <a class='register-option'>Đăng ký tài khoản mới</a>
+                    Đã có tài khoản?
+                    <a href="login.php" class='register-option'>Đăng nhập tài khoản sẵn có</a>
                 </div>
             </div>
         </div>
