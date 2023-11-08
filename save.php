@@ -3,6 +3,13 @@ include_once('db/connect.php');
 session_start();
 ?>
 <?php
+if(isset($_SESSION['id'])) {
+
+} else {
+    header('Location: login.php');
+}
+?>
+<?php
 if(isset($_POST['del'])) {
     $id = $_POST['id'];
     $sql_del = mysqli_query($con, "delete from tbl_favorite where favorite_code = $id");
