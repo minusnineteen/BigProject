@@ -397,7 +397,7 @@ footer {
 
 .bg {
     margin: 100px 350px 0 400px;
-    padding-bottom: 500px;
+    min-height: 500px;
 }
 
 .save {
