@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 06, 2023 lúc 01:18 PM
--- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.2.0
+-- Thời gian đã tạo: Th10 09, 2023 lúc 11:49 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `tbl_account` (
   `phone_number` int(11) NOT NULL,
   `password` varchar(10) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `message_id` int(11) DEFAULT NULL
+  `message_id` int(11) DEFAULT floor(rand() * 900000 + 100000)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -39,35 +39,19 @@ CREATE TABLE `tbl_account` (
 --
 
 INSERT INTO `tbl_account` (`phone_number`, `password`, `name`, `message_id`) VALUES
-(373475903, '123', 'Sunshine', 44857),
-(522452021, '123', 'Rebel', 35130),
-(768614693, '123', 'Sweetie', 41078),
-(902514989, '123', 'Sparky', 63052),
-(904789542, '123', 'Buddy', 76767),
-(913756723, '123', 'Ace', 83836),
-(937930354, '123', 'Rockstar', 88880),
-(939555695, '123', 'Pal', 92890),
-(969255105, '123', 'Angel', 97813),
-(972935963, '123', 'Champ', 10397);
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `tbl_admin`
---
-
-CREATE TABLE `tbl_admin` (
-  `admin_id` int(11) NOT NULL,
-  `user` varchar(10) NOT NULL,
-  `pass` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `tbl_admin`
---
-
-INSERT INTO `tbl_admin` (`admin_id`, `user`, `pass`) VALUES
-(1, 'ad', '202cb962ac59075b964b07152d234b70');
+(1, '123', 'min', 239317),
+(373475903, '123', 'Sunshine', 239318),
+(423947426, '123', 'Rock', 129664),
+(522452021, '123', 'Rebel', 239319),
+(768614693, '123', 'Sweetie', 239320),
+(902514989, '123', 'Sparky', 239321),
+(904789542, '123', 'Buddy', 239322),
+(913756723, '123', 'Ace', 239323),
+(932751024, '123', 'Nguyễn Đăng Kỳ', 261462),
+(937930354, '123', 'Rockstar', 239324),
+(939555695, '123', 'Pal', 239325),
+(969255105, '123', 'Angel', 239326),
+(972935963, '123', 'Champ', 239327);
 
 -- --------------------------------------------------------
 
@@ -108,7 +92,7 @@ INSERT INTO `tbl_area` (`area_name`, `area_code`) VALUES
 ('Huyện Hóc Môn', 21),
 ('Huyện Bình Chánh', 22),
 ('Huyện Củ Chi', 23),
-('Huyện Cần Giờ', 24);
+('Quận Huyện Cần Giờ', 24);
 
 -- --------------------------------------------------------
 
@@ -167,7 +151,7 @@ CREATE TABLE `tbl_favorite` (
 --
 
 INSERT INTO `tbl_favorite` (`favorite_code`, `information_code`, `phone_number`) VALUES
-(2, 200, 373475903);
+(1, 200, 522452021);
 
 -- --------------------------------------------------------
 
@@ -523,7 +507,10 @@ CREATE TABLE `tbl_message` (
 --
 
 INSERT INTO `tbl_message` (`incoming_msg_id`, `outgoing_msg_id`, `msg`, `message_id`) VALUES
-(83836, 44857, 'ym', 21);
+(239322, 239319, 'hello', 21),
+(239319, 239322, 'hi', 22),
+(239322, 239319, 'help me something', 23),
+(239319, 239322, 'ok', 24);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -534,12 +521,6 @@ INSERT INTO `tbl_message` (`incoming_msg_id`, `outgoing_msg_id`, `msg`, `message
 --
 ALTER TABLE `tbl_account`
   ADD PRIMARY KEY (`phone_number`);
-
---
--- Chỉ mục cho bảng `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Chỉ mục cho bảng `tbl_area`
@@ -572,8 +553,7 @@ ALTER TABLE `tbl_information`
   ADD PRIMARY KEY (`information_code`),
   ADD KEY `FK_category_code` (`category_code`),
   ADD KEY `FK_business_code` (`business_code`),
-  ADD KEY `FK_area_code` (`area_code`),
-  ADD KEY `FK_phone_number` (`phone_number`);
+  ADD KEY `FK_area_code` (`area_code`);
 
 --
 -- Chỉ mục cho bảng `tbl_message`
@@ -584,12 +564,6 @@ ALTER TABLE `tbl_message`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
-
---
--- AUTO_INCREMENT cho bảng `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_area`
@@ -613,7 +587,7 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT cho bảng `tbl_favorite`
 --
 ALTER TABLE `tbl_favorite`
-  MODIFY `favorite_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `favorite_code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_information`
@@ -625,7 +599,7 @@ ALTER TABLE `tbl_information`
 -- AUTO_INCREMENT cho bảng `tbl_message`
 --
 ALTER TABLE `tbl_message`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
