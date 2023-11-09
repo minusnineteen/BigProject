@@ -70,7 +70,7 @@ if(isset($_POST['del'])) {
                             if($_SESSION['id'] == $_GET['phone_number'])
                             {
                             ?>
-                            <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>" title="Sửa"><i class='bx bx-edit'></i></a>
+                            <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code']; $_SESSION['inf_id'] = $row_info['information_code'] ?>" title="Sửa"><i class='bx bx-edit'></i></a>
                             <input type="submit" name="del" value="Xóa">
                             <?php
                             }

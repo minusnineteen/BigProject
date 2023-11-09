@@ -55,6 +55,12 @@ if(isset($_POST['edit'])) {
 </style>
 <section id="upload">
     <h1>Sửa Tin</h1>
+    <?php
+        $sql_inf = mysqli_query($con, "select * from tbl_information where information_code = " .$_GET['information_code']);
+        if($row_inf = mysqli_fetch_assoc($sql_inf))
+        {
+    ?>
+
     <form action="" method="POST" enctype="multipart/form-data">
         <label>Sửa hình ảnh</label><br>
         <input type="file" name="img" placeholder="Hình ảnh" class="form-control"><br>
@@ -89,7 +95,7 @@ if(isset($_POST['edit'])) {
         </select>
         <br>
         <label>Tiêu đề tin đăng</label><br>
-        <input type="text" name="title" placeholder="Tiêu đề" class="form-control"><br>
+        <input type="text" name="title" value="<?php echo $row_inf['title']?>" class="form-control"><br>
         <!-- <input type="text" name="room" placeholder="Phòng" class="form-control"><br> -->
         <label>Địa chỉ tin đăng</label><br>
         <?php
@@ -106,19 +112,22 @@ if(isset($_POST['edit'])) {
             ?>
         </select>
         <br>
-        <input type="text" name="address" placeholder="Địa chỉ" class="form-control"><br>
+        <input type="text" name="address" value="<?php echo $row_inf['address']?>" class="form-control"><br>
         <label>Giá bán</label><br>
-        <input type="text" name="price" placeholder="VND" class="form-control"><br>
+        <input type="text" name="price" value="<?php echo $row_inf['price']?>" class="form-control"><br>
         <label>Diện tích</label><br>
-        <input type="text" name="acreage" placeholder="" class="form-control"><br>
+        <input type="text" name="acreage" value="<?php echo $row_inf['acreage']?>" class="form-control"><br>
         <label>Chiều ngang</label><br>
-        <input type="text" name="length" placeholder="" class="form-control"><br>
+        <input type="text" name="length" value="<?php echo $row_inf['title']?>width" class="form-control"><br>
         <label>Chiều dài</label><br>
-        <input type="text" name="width" placeholder="" class="form-control"><br>
+        <input type="text" name="width" value="<?php echo $row_inf['length']?>" class="form-control"><br>
         <label>Mô tả</label><br>
-        <textarea name="description" class="form-control"></textarea><br>
-        <input type="submit" name="edit" value="Sửa Tin">
+        <textarea name="description" class="form-control"><?php echo $row_inf['description']?></textarea><br>
+        <input type="submit" name="edit" value="Sửa hình ảnh">
     </form>
+    <?php
+     }
+    ?>
 </section>
 </body>
 </html>
