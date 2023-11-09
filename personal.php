@@ -48,8 +48,9 @@ if(isset($_POST['del'])) {
             $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
             $offset = ($current_page - 1) * $item_per_page;
             $id = isset($_GET['phone_number']) ? $_GET['phone_number'] : $_SESSION['id'];
-            $sql_info = mysqli_query($con, "select * from tbl_information where phone_number = " . $id . 
-                " limit " . $item_per_page . " offset " . $offset);
+            $sql_info = mysqli_query($con, "select * from tbl_information where phone_number = " . $id .
+                " order by information_code desc
+                limit " . $item_per_page . " offset " . $offset);
             while($row_info = mysqli_fetch_array($sql_info)) {
             ?>
             <div class='save row'>
@@ -67,8 +68,7 @@ if(isset($_POST['del'])) {
                         <form method="POST">
                             <input type="hidden" name="information_code" value="<?php echo $row_info['information_code'] ?>">
                             <?php
-                            if(isset($_SESSION['id']) == $_GET['phone_number'])
-                            {
+                            if($_SESSION['id'] == $_GET['phone_number']) {
                             ?>
                             <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>" title="Sửa"><i class='bx bx-edit'></i></a>
                             <input type="submit" name="del" value="Xóa">

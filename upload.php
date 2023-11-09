@@ -3,6 +3,13 @@ include_once('db/connect.php');
 session_start();
 ?>
 <?php
+if(isset($_SESSION['id'])) {
+
+} else {
+    header('Location: login.php');
+}
+?>
+<?php
 if(isset($_POST['upload'])) {
     $id = $_POST['id'];
     $img = $_FILES['img']['name'];
@@ -16,10 +23,11 @@ if(isset($_POST['upload'])) {
     $acreage = $_POST['acreage'];
     $length = $_POST['length'];
     $width = $_POST['width'];
+    $room = $_POST['room'];
     $description = $_POST['description'];
     $path = 'up/';
-    $sql_insert_post = mysqli_query($con, "insert into tbl_information(phone_number, picture, business_code, category_code, title, address, price, acreage, length, width, description, area_code)
-        values('$id', '$img', '$business', '$category', '$title', '$address', '$price', '$acreage', '$length', '$width', '$description', '$area')");
+    $sql_insert_post = mysqli_query($con, "insert into tbl_information(phone_number, picture, business_code, category_code, title, address, price, acreage, length, width, room, description, area_code)
+        values('$id', '$img', '$business', '$category', '$title', '$address', '$price', '$acreage', '$length', '$width', '$room', '$description', '$area')");
     move_uploaded_file($img_tmp, $path.$img);    
 }
 ?>
@@ -39,9 +47,20 @@ if(isset($_POST['upload'])) {
     body {
         background-color: #f4f4f4;
     }
+    .upload {
+        display: flex;
+        justify-content: space-between;
+    }
+    .upload a {
+        font-size: 14px;
+        color: blue;
+    }
 </style>
 <section id="upload">
-    <h1>Đăng Tin</h1>
+    <div class="upload">
+        <h1><a href="index.php"><i class='bx bx-arrow-back' ></i></a>Đăng Tin</h1>
+        <a href="index.php">(Trở về trang chủ)</a>
+    </div>
     <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $_SESSION['id'] ?>" class="form-control"><br>
         <label>Đăng hình ảnh</label><br>
@@ -102,6 +121,8 @@ if(isset($_POST['upload'])) {
         <input type="text" name="length" placeholder="" class="form-control"><br>
         <label>Chiều dài</label><br>
         <input type="text" name="width" placeholder="" class="form-control"><br>
+        <label>Số phòng</label><br>
+        <input type="text" name="room" placeholder="" class="form-control"><br>
         <label>Mô tả</label><br>
         <textarea name="description" class="form-control"></textarea><br>
         <input type="submit" name="upload" value="Đăng Tin">

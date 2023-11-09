@@ -3,6 +3,13 @@ include_once('db/connect.php');
 session_start();
 ?>
 <?php
+if(isset($_SESSION['id'])) {
+
+} else {
+    header('Location: login.php');
+}
+?>
+<?php
 if(isset($_POST['edit'])) {
     $information_code = isset($_GET['information_code']) ? $_GET['information_code'] : null;
     $img = $_FILES['img']['name'];
@@ -16,6 +23,7 @@ if(isset($_POST['edit'])) {
     $acreage = $_POST['acreage'];
     $length = $_POST['length'];
     $width = $_POST['width'];
+    $room = $_POST['room'];
     $description = $_POST['description'];
     $path = 'up/';
     $sql_insert_post = mysqli_query($con, "UPDATE `tbl_information` SET 
@@ -28,8 +36,9 @@ if(isset($_POST['edit'])) {
     `acreage` = '$acreage',
     `width` = '$width',
     `length` = '$length',
-    `date_time` = DATE_FORMAT(NOW(), '%Y-%m'),
+    `room` = '$room',
     `description` = '$description',
+    `date_time` = DATE_FORMAT(NOW(), '%Y-%m'),
     `area_code` = '$area' 
     WHERE `information_code` = '$information_code'");
     move_uploaded_file($img_tmp, $path.$img);   
@@ -52,15 +61,24 @@ if(isset($_POST['edit'])) {
     body {
         background-color: #f4f4f4;
     }
+    .upload {
+        display: flex;
+        justify-content: space-between;
+    }
+    .upload a {
+        font-size: 14px;
+        color: blue;
+    }
 </style>
 <section id="upload">
-    <h1>Sửa Tin</h1>
+    <div class="upload">
+        <h1><a href="index.php"><i class='bx bx-arrow-back' ></i></a>Sửa Tin</h1>
+        <a href="index.php">(Trở về trang chủ)</a>
+    </div>
     <?php
-        $sql_inf = mysqli_query($con, "select * from tbl_information where information_code = " .$_GET['information_code']);
-        if($row_inf = mysqli_fetch_assoc($sql_inf))
-        {
+        $sql_inf = mysqli_query($con, "select * from tbl_information where information_code = " . $_GET['information_code']);
+        if($row_inf = mysqli_fetch_assoc($sql_inf)) {
     ?>
-
     <form action="" method="POST" enctype="multipart/form-data">
         <label>Sửa hình ảnh</label><br>
         <input type="file" name="img" placeholder="Hình ảnh" class="form-control"><br>
@@ -69,7 +87,7 @@ if(isset($_POST['edit'])) {
         $sql_business = mysqli_query($con, "select * from tbl_business order by business_code");
         ?>
         <select name="business" class="form-control">
-            <option value="0">---Chọn---</option>
+            <!-- <option value="0">---Chọn---</option> -->
             <?php
             while($row_business = mysqli_fetch_array($sql_business)) {
             ?>
@@ -84,7 +102,7 @@ if(isset($_POST['edit'])) {
         $sql_category = mysqli_query($con, "select * from tbl_category order by category_code");
         ?>
         <select name="category" class="form-control">
-            <option value="0">---Chọn---</option>
+            <!-- <option value="0">---Chọn---</option> -->
             <?php
             while($row_category = mysqli_fetch_array($sql_category)) {
             ?>
@@ -96,13 +114,12 @@ if(isset($_POST['edit'])) {
         <br>
         <label>Tiêu đề tin đăng</label><br>
         <input type="text" name="title" value="<?php echo $row_inf['title']?>" class="form-control"><br>
-        <!-- <input type="text" name="room" placeholder="Phòng" class="form-control"><br> -->
         <label>Địa chỉ tin đăng</label><br>
         <?php
         $sql_area = mysqli_query($con, "select * from tbl_area order by area_code");
         ?>
         <select name="area" class="form-control">
-            <option value="0">---Chọn---</option>
+            <!-- <option value="0">---Chọn---</option> -->
             <?php
             while($row_area = mysqli_fetch_array($sql_area)) {
             ?>
@@ -118,15 +135,23 @@ if(isset($_POST['edit'])) {
         <label>Diện tích</label><br>
         <input type="text" name="acreage" value="<?php echo $row_inf['acreage']?>" class="form-control"><br>
         <label>Chiều ngang</label><br>
-        <input type="text" name="length" value="<?php echo $row_inf['title']?>width" class="form-control"><br>
+        <input type="text" name="length" value="<?php echo $row_inf['width']?>" class="form-control"><br>
         <label>Chiều dài</label><br>
         <input type="text" name="width" value="<?php echo $row_inf['length']?>" class="form-control"><br>
+        <label>Số phòng</label><br>
+        <input type="text" name="room" value="<?php echo $row_inf['room']?>" class="form-control"><br>
         <label>Mô tả</label><br>
         <textarea name="description" class="form-control"><?php echo $row_inf['description']?></textarea><br>
-        <input type="submit" name="edit" value="Sửa hình ảnh">
+        <?php
+        if($_SESSION['id'] == $row_inf['phone_number']) {
+        ?>
+        <input type="submit" name="edit" value="Sửa tin">
+        <?php
+        }
+        ?>
     </form>
     <?php
-     }
+    }
     ?>
 </section>
 </body>

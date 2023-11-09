@@ -29,7 +29,11 @@ if(isset($_POST['save'])) {
             <div class="post-left row">
                 <?php
                 $id = $_GET['id'];
-                $sql_info = mysqli_query($con, 'select * from tbl_information order by information_code');
+                $sql_info = mysqli_query($con, 'select * from tbl_information 
+                    inner join tbl_business on tbl_information.business_code = tbl_business.business_code
+                    inner join tbl_category on tbl_information.category_code = tbl_category.category_code
+                    inner join tbl_area on tbl_information.area_code = tbl_area.area_code
+                    order by information_code');
                 while($row_info = mysqli_fetch_array($sql_info)) {
                     if($row_info['information_code'] == $id) {
                 ?>
@@ -48,6 +52,7 @@ if(isset($_POST['save'])) {
             </div>
             <div class="post-right">
                 <div class="post-title">
+                    <p><?php echo $row_info['business_name'] ?> > <?php echo $row_info['category_name'] ?> > <?php echo $row_info['area_name'] ?></p>
                     <h1><?php echo $row_info['title'] ?></h1>
                     <p><?php echo $row_info['address'] ?></p>
                 </div>

@@ -41,6 +41,7 @@ if(isset($_POST['del'])) {
                 $sql_info = mysqli_query($con, "select * from tbl_information 
                     inner join tbl_account on tbl_information.phone_number = tbl_account.phone_number
                     inner join tbl_favorite on tbl_information.information_code = tbl_favorite.information_code
+                    order by tbl_favorite.favorite_code desc
                     limit $item_per_page offset $offset");
                 while($row_info = mysqli_fetch_array($sql_info)) {
                     if($row_info['phone_number'] == $number) {

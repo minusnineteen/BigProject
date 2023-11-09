@@ -282,6 +282,11 @@ footer {
     margin-top: 5%;
 }
 
+.post-title p:first-child {
+    margin-bottom: 10px;
+    color: blue;
+}
+
 .post-title p {
     color: #ccc;
 }
