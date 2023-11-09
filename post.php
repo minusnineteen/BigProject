@@ -3,17 +3,6 @@ include_once('db/connect.php');
 session_start();
 ?>
 <?php
-if(isset($_GET['status'])) {
-    $logout = $_GET['status'];
-} else {
-    $logout = '';
-}
-if($logout == 'logout') {
-    unset($_SESSION['login']);
-    header('Location: index.php');
-}
-?>
-<?php
 if(isset($_POST['save'])) {
     $id = $_GET['id'];
     $number = $_SESSION['id'];
