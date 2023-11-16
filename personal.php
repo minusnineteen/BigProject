@@ -68,7 +68,7 @@ if(isset($_POST['del'])) {
                         <form method="POST">
                             <input type="hidden" name="information_code" value="<?php echo $row_info['information_code'] ?>">
                             <?php
-                            if($_SESSION['id'] == $_GET['phone_number']) {
+                            if(isset($_SESSION['id']) && $_SESSION['id'] == $_GET['phone_number']) {
                             ?>
                             <a href="http://localhost/land/edit.php?information_code=<?php echo $row_info['information_code'] ?>" title="Sửa"><i class='bx bx-edit'></i></a>
                             <input type="submit" name="del" value="Xóa">

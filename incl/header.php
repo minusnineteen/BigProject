@@ -6,7 +6,9 @@ if(isset($_GET['status'])) {
 }
 if($logout == 'logout') {
     unset($_SESSION['login']);
+    session_destroy();
     header('Location: index.php');
+    exit();
 }
 ?>
 <header>
@@ -35,11 +37,18 @@ if($logout == 'logout') {
     <div class="user">
         <a class="bx bx-user" id="user"></a>
         <ul class="sub-user" id="sub-user">
+            <?php if(isset($_SESSION['id']) && isset($_SESSION['login'])) { ?>
+            <li><a href="personal.php?phone_number=<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
+            <?php } ?>
             <li><a href="upload.php">Đăng tin</a></li>
+            <li><a href="save.php">Tin lưu</a></li>
+            <li><a href="chart.php">Biểu đồ</a></li>
+            <?php if(!isset($_SESSION['id']) && !isset($_SESSION['login'])) { ?>
             <li><a href="register.php">Đăng ký</a></li>
             <li><a href="login.php">Đăng nhập</a></li>
+            <?php } else { ?>
             <li><a href="?status=logout">Đăng xuất</a></li>
-            <li><a href="personal.php?phone_number=<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
+            <?php } ?>
         </ul>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

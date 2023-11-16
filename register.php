@@ -14,6 +14,11 @@ if(isset($_POST['register'])) {
             </script>';
     } else {
         $sql_register = mysqli_query($con, "insert into tbl_account(phone_number, password, name) values('$number', '$password', '$name')");
+        echo '<script>
+            if(confirm("Tạo tài khoản thành công! Đăng nhập để tiếp tục.")) {
+                window.location.href = "login.php";
+            }
+            </script>';
     }
 }
 ?>

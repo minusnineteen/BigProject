@@ -125,8 +125,64 @@ if(isset($_POST['upload'])) {
         <input type="text" name="room" placeholder="" class="form-control"><br>
         <label>Mô tả</label><br>
         <textarea name="description" class="form-control"></textarea><br>
+        <button type="button" onclick="saveDraft()">Lưu nháp</button>
         <input type="submit" name="upload" value="Đăng Tin">
     </form>
 </section>
+<script>
+function saveDraft() {
+    var id = document.querySelector('input[name="id"]').value;
+    var img = document.querySelector('input[name="img"]').value;
+    var business = document.querySelector('select[name="business"]').value;
+    var category = document.querySelector('select[name="category"]').value;
+    var title = document.querySelector('input[name="title"]').value;
+    var area = document.querySelector('select[name="area"]').value;
+    var address = document.querySelector('input[name="address"]').value;
+    var price = document.querySelector('input[name="price"]').value;
+    var acreage = document.querySelector('input[name="acreage"]').value;
+    var length = document.querySelector('input[name="length"]').value;
+    var width = document.querySelector('input[name="width"]').value;
+    var room = document.querySelector('input[name="room"]').value;
+    var description = document.querySelector('textarea[name="description"]').value;
+    var draft = {
+        id: id,
+        img: img,
+        business: business,
+        category: category,
+        title: title,
+        area: area,
+        address: address,
+        price: price,
+        acreage: acreage,
+        length: length,
+        width: width,
+        room: room,
+        description: description
+    };
+    localStorage.setItem('draft', JSON.stringify(draft));
+    alert('Bản nháp đã được lưu thành công!');
+}
+</script>
+<script>
+window.onload = function() {
+    var draftData = localStorage.getItem('draft');
+    if (draftData) {
+        var draft = JSON.parse(draftData);
+        document.querySelector('input[name="id"]').value = draft.id;
+        document.querySelector('input[name="img"]').value = draft.img;
+        document.querySelector('select[name="business"]').value = draft.business;
+        document.querySelector('select[name="category"]').value = draft.category;
+        document.querySelector('input[name="title"]').value = draft.title;
+        document.querySelector('select[name="area"]').value = draft.area;
+        document.querySelector('input[name="address"]').value = draft.address;
+        document.querySelector('input[name="price"]').value = draft.price;
+        document.querySelector('input[name="acreage"]').value = draft.acreage;
+        document.querySelector('input[name="length"]').value = draft.length;
+        document.querySelector('input[name="width"]').value = draft.width;
+        document.querySelector('input[name="room"]').value = draft.room;
+        document.querySelector('textarea[name="description"]').value = draft.description;
+    }
+}
+</script>
 </body>
 </html>
