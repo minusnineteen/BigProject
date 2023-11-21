@@ -34,6 +34,9 @@ if(isset($_GET['del_post'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Chào Mừng</title>
     <style>
         table {
             border: 1px solid black;
@@ -54,15 +57,39 @@ if(isset($_GET['del_post'])) {
             cursor: pointer;
         }
     </style>
-    <title>Chào Mừng</title>
 </head>
 <body>
-    <h1 align="center">Admin</h1>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand">Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                <a class="nav-link info2">Danh sách tin đăng</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link info1">Danh sách tài khoản</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="?status=logout">Đăng xuất</a>
+                </li>
+            </ul>
+            <!-- <form class="d-flex">
+                <input class="form-control me-2" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="button">Search</button>
+            </form> -->
+            </div>
+        </div>
+    </nav> 
+    <!-- <h1 align="center">Admin</h1>
     <p align="center"><a href="?status=logout">Đăng xuất</a></p>
     <div class="info">
         <p><a class="info2">Danh sách tin đăng</a> | 
         <a class="info1">Danh sách tài khoản</a></p>
-    </div>
+    </div> -->
     <div class="post">
         <div class="top">
             <?php

@@ -32,20 +32,20 @@ if(isset($_POST['del'])) {
     ?>
     <section id="save">
         <div class="bg">
+            <?php
+            $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+            $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
+            $offset = ($current_page - 1) * $item_per_page;
+            $number = $_SESSION['id'];
+            $sql_info = mysqli_query($con, "select * from tbl_information 
+                inner join tbl_account on tbl_information.phone_number = tbl_account.phone_number
+                inner join tbl_favorite on tbl_information.information_code = tbl_favorite.information_code
+                order by tbl_favorite.favorite_code desc
+                limit $item_per_page offset $offset");
+            while($row_info = mysqli_fetch_array($sql_info)) {
+                if($row_info['phone_number'] == $number) {
+            ?>
             <div class="save row">
-                <?php
-                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $item_per_page = isset($_GET['per_page']) ? $_GET['per_page'] : 10;
-                $offset = ($current_page - 1) * $item_per_page;
-                $number = $_SESSION['id'];
-                $sql_info = mysqli_query($con, "select * from tbl_information 
-                    inner join tbl_account on tbl_information.phone_number = tbl_account.phone_number
-                    inner join tbl_favorite on tbl_information.information_code = tbl_favorite.information_code
-                    order by tbl_favorite.favorite_code desc
-                    limit $item_per_page offset $offset");
-                while($row_info = mysqli_fetch_array($sql_info)) {
-                    if($row_info['phone_number'] == $number) {
-                ?>
                 <div class="save-left">
                     <a href="post.php?id=<?php echo $row_info['information_code'] ?>">
                         <img src="up/<?php echo $row_info['picture'] ?>" width="100px" height="100px">
@@ -65,11 +65,11 @@ if(isset($_POST['del'])) {
                         </form>
                     </div>
                 </div>
-                <?php
-                    }
-                }
-                ?>
             </div>
+            <?php
+                }
+            }
+            ?>
             <div class='paging-container'>
                 <div class='paging-wrapper'>
                     <?php
