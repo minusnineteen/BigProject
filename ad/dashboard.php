@@ -118,7 +118,7 @@ if(isset($_GET['del_post'])) {
             </form>
         </div>
         <h3>Danh sách tin đăng</h3>
-        <p>Có tất cả <?php echo $count_search_term ?> tin đăng</p>    
+        <p>Có tất cả <?php echo $count_search_term ?> tin đăng</p>
         <table class="post">
             <tr>
                 <th>STT</th>
